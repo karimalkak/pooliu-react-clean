@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./verify.scss"
 
-function Verify() {
+export default function Verify() {
   return (
     <div className="auth-pages d-flex align-items-center">
       <div className="container">
@@ -165,4 +165,4 @@ function Verify() {
   );
 }
 
-export default Verify;
+

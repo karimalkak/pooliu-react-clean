@@ -4,7 +4,7 @@ import { useState } from "react";
 //import Verify from "./Verify";
 import { useNavigate } from "react-router-dom";
 import "./register.scss"
-function Register() {
+export default function Register() {
   const [ID, setID] = useState("");
   const [pass, setPass] = useState("");
   const [cpass, setCpass] = useState("");
@@ -198,4 +198,4 @@ function Register() {
   );
 }
 
-export default Register;
+

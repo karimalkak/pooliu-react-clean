@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./setupaccount.scss"
 
-function SetupAccount() {
+export default function SetupAccount() {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -219,4 +219,4 @@ function SetupAccount() {
     </div>
   );
 }
-export default SetupAccount;
+

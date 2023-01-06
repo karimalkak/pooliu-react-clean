@@ -11,87 +11,57 @@ $dark-grey: #a0a0a0;
 $blue-grey: #ECF0F3;
 $light-blue-gray: #E8ECF1;
 
-
-
-.create-trip{
-
-    .main-container{
-      padding: 0 15%;
-    }
+.rides {
   
-    .title {
-        margin-top: 0px;
-        font-size: 50px;
+    .accordion-item{
+      border-top: $dark-blue solid 3px;
+      border-left: $dark-blue solid 3px;
+      border-right: $dark-blue solid 3px;
+  
+      .accordion-button{
         color: $dark-blue;
-        font-weight: bold;
-        text-align: center;
-    }
-      
-    .inputs {
-        select{
-          //width: 300px;
-          border-top: 0px;
-          border-left: 0px;
-          border-right: 0px;
-          border-bottom: solid $dark-blue 2px;
-          border-radius: 0;
-          font-weight: 500;
-          color: $dark-blue;
-          font-size: 20px;
-        }
-  
-        .dropdown{
-          border-top: 0px;
-          border-left: 0px;
-          border-right: 0px;
-          border-bottom: solid $dark-blue 2px;
-        }
-  
-        .location-btn{
-          width: 100%;
-          font-weight: 500;
-          color: $dark-blue;
-          font-size: 20px;
-          border: solid $dark-blue 2px;
-        }
-  
-        .seat-label{
-          color: $dark-blue;
-          font-size: 20px;
-          font-weight: 500;
-          background-color: white;
-          border: solid $dark-blue 2px;
-        }
-  
-        .number{
-          text-align: center;
-          border: solid $dark-blue 2px;
-        }
-        .add{
-          width: 40px;
-          font-weight: bold;
-          color: $yellow;
-          background-color: $dark-blue;
-          border: solid $dark-blue 2px;
-        }
-  
+        font-size: 24px;
+        font-weight: 700;
+        background-color: $light-blue-gray;
       }
-      
-      .modal-dialog{
-        width: 100%;
-        .map-modal{
-          .modal-title{
+  
+      .accordion-button::after{
+        background-image: url("../public/arrow-down-1.svg");
+      }
+  
+      .accordion-body{
+        .ride{
+          border: $dark-blue solid 1px;
+          border-radius: 7px;
+          .profile-pic {
+            height: 65px;
+            border-radius: 50%;
+          }
+  
+          .details{
             color: $dark-blue;
+            font-size: 14px;
+            font-weight: 500;
+          }
+  
+          .name{
+            color: $dark-blue;
+            font-size: 22px;
+            font-weight: 500;
           }
         }
       }
   
-      .create{
-        border: 0;
-        background-color: transparent;
-      }
-    
+      
+    }
   
+    .last-item{
+      border-bottom: $dark-blue solid 3px;
+      
+    }
+  
+  
+    
   }
   //responsiveness
 

@@ -3,7 +3,7 @@ import Navigation from "../../Components/Navigation/Navigation";
 import { Link } from "react-router-dom";
 import "./pickride.scss"
 
-const PickRide = () => {
+export default function PickRide(){
   return (
     <>
       <Navigation />
@@ -162,4 +162,4 @@ const PickRide = () => {
   );
 };
 
-export default PickRide;
+

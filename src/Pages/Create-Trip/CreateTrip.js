@@ -1,7 +1,7 @@
 import React from "react";
 import Navigation from "../../Components/Navigation/Navigation";
 import "./createtrip.scss"
-const CreateTrip = () => {
+export default function CreateTrip(){
   return (
     <>
       <Navigation />
@@ -253,4 +253,3 @@ const CreateTrip = () => {
   );
 };
 
-export default CreateTrip;

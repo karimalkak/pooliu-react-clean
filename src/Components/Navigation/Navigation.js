@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./navigation.scss"
-const Navigation = () => {
+export default function Navigation(){
   return(
     <nav className="nav p-0">
         <div className="container">
@@ -240,4 +240,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+

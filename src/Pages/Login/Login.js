@@ -1,7 +1,7 @@
 import React from "react";
 import "./login.scss"
 import { Link } from "react-router-dom";
-const Login = () => {
+export default function Login(){
   return (
     <div className="auth-pages d-flex align-items-center">
       <div className="container">
@@ -140,4 +140,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+
