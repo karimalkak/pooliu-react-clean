@@ -8,6 +8,15 @@ $yellow: #ffb019;
 $white: white;
 $light-gray: rgba(160, 160, 160, 0.2);
 $dark-grey: #a0a0a0;
-$blue-grey: #ECF0F3;
-$light-blue-gray: #E8ECF1;
+$blue-grey: #ecf0f3;
+$light-blue-gray: #e8ecf1;
 
+.home-nav {
+  position: absolute !important;
+  z-index: 1 !important;
+  width: 100% !important;
+
+  .test {
+    width: 100% !important;
+  }
+}
