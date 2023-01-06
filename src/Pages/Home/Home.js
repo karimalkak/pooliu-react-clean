@@ -1,4 +1,5 @@
 import React from "react";
+//import Footer from "../../Components/Footer/Footer";
 import HomeNavigation from "../../Components/Home-navigation/HomeNavigation";
 import "animate.css";
 import './home.scss';
@@ -6,26 +7,32 @@ import './home.scss';
 export default function Home(){
   return (
     <>
+      <HomeNavigation></HomeNavigation>
       <div className="home-page">
-        <div className="background">
-          <img src="yellow.png" className="yellow-img p-0" alt="..." />
-          <img src="header.png" className="header-img p-0" alt="..." />
+        <div className="background p-0 m-0">
+          <div className="row header-row d-flex flex-column-reverse flex-lg-row m-0 p-0">
+            <div className="yellow-img col-lg-6 col-12 m-0 p-0">
+              <div className="header container">
+                <h1 className="first animate_animated animatefadeInLeft animate_fast">
+                  Let's share
+                </h1>
+                <h1 className="second animate_animated animatefadeInLeft animatedelay-1s animate_fast">
+                  &nbsp; &nbsp; &nbsp; the Ride.
+                </h1>
+                <p className="header-text mt-5 animate_animated animatefadeIn animatedelay-1s animate_fast">
+                  Due to the high prices in gas, and due to transferring
+                  education from online to on campus. We as students will help
+                  each other to reach out for our college to reach out for a
+                  better future.
+                </p>
+              </div>
+            </div>
+            <div className="header-img col-lg-6 col-12 m-0 p-0"></div>
+          </div>
         </div>
         <div className="container">
-          <HomeNavigation></HomeNavigation>
-          <h1 className="first animate__animated animate__fadeInLeft animate__fast">
-            Let's share
-          </h1>
-          <h1 className="second animate__animated animate__fadeInLeft animate__delay-1s animate__fast">
-            &nbsp; &nbsp; &nbsp; the Ride.
-          </h1>
-          <p className="header-text mt-5 animate__animated animate__fadeIn animate__delay-1s animate__fast">
-            Due to the high prices in gas, and due to transferring education
-            from online to on campus. We as students will help each other to
-            reach out for our college to reach out for a better future.
-          </p>
           <div className="row pros">
-            <div className="col-4">
+            <div className="col-lg-4 col-12 pb-5">
               <div className="d-flex justify-content-center">
                 <img src="car.svg" alt="" />
               </div>
@@ -35,7 +42,7 @@ export default function Home(){
                 Ducimus, cupiditate.
               </p>
             </div>
-            <div className="col-4">
+            <div className="col-lg-4 col-12 pb-5">
               <div className="d-flex justify-content-center">
                 <img src="shield.svg" alt="" />
               </div>
@@ -45,7 +52,7 @@ export default function Home(){
                 ipsum?
               </p>
             </div>
-            <div className="col-4">
+            <div className="col-lg-4 col-12 pb-5">
               <div className="d-flex justify-content-center">
                 <img src="tap.svg" alt="" />
               </div>
@@ -68,14 +75,14 @@ export default function Home(){
               <div className="col-7 text">
                 <h2>Request a ride...</h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-                  natus quae voluptas tempore sed, odio dolorem vitae quam
-                  placeat vel, itaque ea impedit voluptate sequi repellendus
-                  earum dolore delectus nostrumficdi{" "}
+                  Lorem ipsum dolor sit amet consectetur adipisic elit. Ullam
+                  natus quae voluptas tempore sed, odio dorem vitae quam placeat
+                  vel, itaque ea impedit voluptate sequi repellendus earum
+                  dolore delectus nostru{" "}
                 </p>
               </div>
-              <div className="col-5 image">
-                <img src="phone1.svg" alt="" />
+              <div className="col-5 image d-flex justify-content-end">
+                <img src="phone1.svg" alt="" className="phone1-img" />
               </div>
             </div>
           </div>
@@ -83,9 +90,7 @@ export default function Home(){
         <div className="phone2">
           <div className="container">
             <div className="row">
-              <div className="col-6 image">
-                <img src="phone2.svg" alt="" />
-              </div>
+              <div className="col-6 image"></div>
               <div className="col-6 text">
                 <h2>...or offer one!</h2>
                 <p>
@@ -99,8 +104,7 @@ export default function Home(){
           </div>
         </div>
       </div>
+      {/* <Footer></Footer> */}
     </>
   );
 };
-
-
