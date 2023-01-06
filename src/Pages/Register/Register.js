@@ -27,7 +27,7 @@ export default function Register() {
     ) {
       //👇️ navigate to /verify
 
-     // navigate("/verify");
+     navigate("/verify");
     }
   }
   return (

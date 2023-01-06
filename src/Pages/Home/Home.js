@@ -1,5 +1,5 @@
 import React from "react";
-//import Footer from "../../Components/Footer/Footer";
+import Footer from "../../Components/Footer/Footer";
 import HomeNavigation from "../../Components/Home-navigation/HomeNavigation";
 import "animate.css";
 import './home.scss';
@@ -104,7 +104,7 @@ export default function Home(){
           </div>
         </div>
       </div>
-      {/* <Footer></Footer> */}
+       <Footer></Footer> 
     </>
   );
 };
