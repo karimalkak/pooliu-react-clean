@@ -1,10 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-//import Verify from "./Verify";
 import { useNavigate } from "react-router-dom";
 import "./register.scss"
+
+
+
+
 export default function Register() {
+
+
   const [ID, setID] = useState("");
   const [pass, setPass] = useState("");
   const [cpass, setCpass] = useState("");
@@ -13,11 +18,9 @@ export default function Register() {
   const onOptionChangeLIU = (e) => {
     setLIU(e.target.value);
   };
-  const [data, setData] = [ID, pass, isLIU];
-
   const PassLen = pass.toString().split("").length;
   const IDlen = ID.toString().split("").length;
-  function navigateVer() {
+  function conditions() {
     if (
       IDlen > 7 &&
       IDlen < 9 &&
@@ -25,9 +28,7 @@ export default function Register() {
       PassLen > 7 &&
       isLIU != ""
     ) {
-      //👇️ navigate to /verify
-
-     navigate("/verify");
+      return true;
     }
   }
   return (
@@ -110,70 +111,70 @@ export default function Register() {
                       </div>
                     </div>
                     <div className="submit d-flex justify-content-center">
-                      <svg
-                        onClick={() => {
-                          navigateVer();
-                        }}
-                        xmlns="http://www.w3.org/2000/svg"
-                        xlink="http://www.w3.org/1999/xlink"
-                        width="218"
-                        height="70"
-                        viewBox="0 0 218 70"
-                      >
-                        <defs>
-                          <filter
-                            id="Rectangle_11"
-                            x="0"
-                            y="0"
-                            width="218"
-                            height="70"
-                            filterUnits="userSpaceOnUse"
-                          >
-                            <feOffset dx="-1" dy="2" input="SourceAlpha" />
-                            <feGaussianBlur stdDeviation="3" result="blur" />
-                            <feFlood
-                              flood-color="#143d6d"
-                              flood-opacity="0.502"
-                            />
-                            <feComposite operator="in" in2="blur" />
-                            <feComposite in="SourceGraphic" />
-                          </filter>
-                        </defs>
-                        <g
-                          id="Group_13"
-                          data-name="Group 13"
-                          transform="translate(-112 -521)"
+                      <Link to={conditions() && '/verify'}
+                        state={{id: ID, password:pass, isLIU: isLIU}}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          xlink="http://www.w3.org/1999/xlink"
+                          width="218"
+                          height="70"
+                          viewBox="0 0 218 70"
                         >
+                          <defs>
+                            <filter
+                              id="Rectangle_11"
+                              x="0"
+                              y="0"
+                              width="218"
+                              height="70"
+                              filterUnits="userSpaceOnUse"
+                            >
+                              <feOffset dx="-1" dy="2" input="SourceAlpha" />
+                              <feGaussianBlur stdDeviation="3" result="blur" />
+                              <feFlood
+                                flood-color="#143d6d"
+                                flood-opacity="0.502"
+                              />
+                              <feComposite operator="in" in2="blur" />
+                              <feComposite in="SourceGraphic" />
+                            </filter>
+                          </defs>
                           <g
-                            transform="matrix(1, 0, 0, 1, 112, 521)"
-                            filter="url(#Rectangle_11)"
+                            id="Group_13"
+                            data-name="Group 13"
+                            transform="translate(-112 -521)"
                           >
-                            <rect
-                              id="Rectangle_11-2"
-                              data-name="Rectangle 11"
-                              width="200"
-                              height="52"
-                              rx="10"
-                              transform="translate(10 7)"
-                              fill="#143d6d"
-                            />
+                            <g
+                              transform="matrix(1, 0, 0, 1, 112, 521)"
+                              filter="url(#Rectangle_11)"
+                            >
+                              <rect
+                                id="Rectangle_11-2"
+                                data-name="Rectangle 11"
+                                width="200"
+                                height="52"
+                                rx="10"
+                                transform="translate(10 7)"
+                                fill="#143d6d"
+                              />
+                            </g>
+                            <text
+                              id="CREATE_ACCOUNT"
+                              data-name="CREATE ACCOUNT"
+                              transform="translate(137 563)"
+                              fill="#ffb019"
+                              font-size="20"
+                              font-family="SegoeUI-Bold, Segoe UI"
+                              font-weight="700"
+                              letter-spacing="-0.007em"
+                            >
+                              <tspan x="0" y="0">
+                                CREATE ACCOUNT
+                              </tspan>
+                            </text>
                           </g>
-                          <text
-                            id="CREATE_ACCOUNT"
-                            data-name="CREATE ACCOUNT"
-                            transform="translate(137 563)"
-                            fill="#ffb019"
-                            font-size="20"
-                            font-family="SegoeUI-Bold, Segoe UI"
-                            font-weight="700"
-                            letter-spacing="-0.007em"
-                          >
-                            <tspan x="0" y="0">
-                              CREATE ACCOUNT
-                            </tspan>
-                          </text>
-                        </g>
-                      </svg>
+                        </svg>
+                      </Link>
                     </div>
 
                     <p className="d-flex justify-content-start mt-2">

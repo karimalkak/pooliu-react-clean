@@ -1,0 +1,23 @@
+//fonts
+$font: "Segoe UI";
+
+//colors
+$dark-blue: #143d6d;
+$darker-blue: #103158;
+$yellow: #ffb019;
+$white: white;
+$light-gray: rgba(160, 160, 160, 0.2);
+$dark-grey: #a0a0a0;
+$blue-grey: #ECF0F3;
+$light-blue-gray: #E8ECF1;
+
+.all-rides{
+
+    h1{
+      text-align: center;
+      color: $dark-blue;
+      font-weight: bold;
+      font-size: 50px;
+    }
+    
+  }

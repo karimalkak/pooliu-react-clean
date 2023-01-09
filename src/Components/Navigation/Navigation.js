@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./navigation.scss"
-export default function Navigation(){
+
+
+export default function Navigation(props){
+    const ID = props.id;
   return(
     <nav className="nav p-0">
+        {ID}
         <div className="container">
         <div className="row d-flex justify-content-between align-items-center">
             <div className="col-md-3 col-5 pt-3">

@@ -38,8 +38,7 @@ export default function Home(){
               </div>
               <h3>Get a ride</h3>
               <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Ducimus, cupiditate.
+                You can a ride from a place you near to you to your campus easily.
               </p>
             </div>
             <div className="col-lg-4 col-12 pb-5">
@@ -48,8 +47,7 @@ export default function Home(){
               </div>
               <h3>Safe and convenient</h3>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore,
-                ipsum?
+                It is a safe environment since the drivers and the riders will be strictly your college colleagues.
               </p>
             </div>
             <div className="col-lg-4 col-12 pb-5">
@@ -58,8 +56,7 @@ export default function Home(){
               </div>
               <h3>Easy to use</h3>
               <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit,
-                neque.
+                With just a click of a bottom you  can navigate through the available rides from your city to your campus and vice versa.
               </p>
             </div>
           </div>
@@ -75,10 +72,9 @@ export default function Home(){
               <div className="col-7 text">
                 <h2>Request a ride...</h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisic elit. Ullam
-                  natus quae voluptas tempore sed, odio dorem vitae quam placeat
-                  vel, itaque ea impedit voluptate sequi repellendus earum
-                  dolore delectus nostru{" "}
+                  As it easy as it goes you can request a ride from your city to your campus
+                  and navigate between all the available rides according to your needs and 
+                  time, we create for you a safe environment{" "}
                 </p>
               </div>
               <div className="col-5 image d-flex justify-content-end">
@@ -94,10 +90,9 @@ export default function Home(){
               <div className="col-6 text">
                 <h2>...or offer one!</h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-                  natus quae voluptas tempore sed, odio dolorem vitae quam
-                  placeat vel, itaque ea impedit voluptate sequi repellendus
-                  earum dolore delectus nostrumficdi{" "}
+                  Or you can offer a ride if you have a car and your colleagues will share the gas 
+                  fees with you so it become easier for everyone to afford. Cause in these hard times
+                  unity among us is a must.{" "}
                 </p>
               </div>
             </div>

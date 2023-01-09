@@ -1,13 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./setupaccount.scss"
+import ReactDOM from 'react-dom/client';
+
 
 export default function SetupAccount() {
+  
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
+  const state = useLocation();
+  const {id, password, isLIU} = state.state;
   const [stylePP, setStylePP] = useState(
     "col-12 d-flex justify-content-center my-4 choose-pic"
   );
@@ -28,19 +34,24 @@ export default function SetupAccount() {
       setStylePP("col-12 d-flex justify-content-center my-4 choose-pic");
     }
   }
-  const handleProfile = () => {
-    alert(
-      fname +
-        " " +
-        lname +
-        " Your phone number is " +
-        phoneNumber +
-        " " +
-        gender
-    );
+  var user = ""
+  function handleProfile(){
+   if(fname != null && lname != null && phoneNumber != null && gender != null){
+    user={
+      ID: id,
+      Password: password,
+      isLIU: isLIU,
+      FirstName:fname,
+      LastName: lname,
+      PhoneNumber: phoneNumber,
+      Gender: gender
+    }
+    return true;
+  }
   };
   return (
     <div className="auth-pages d-flex align-items-center pickride-page ">
+      
       <div className="container setup-page">
         <div className="row  d-flex justify-content-center">
           <div className="card card-sa">
@@ -146,6 +157,8 @@ export default function SetupAccount() {
                   </div>
                   <div className="col-lg-6 col-12">
                     <Link
+                      state={{id:id}}
+                      to={handleProfile() && "/main"}
                       onClick={() => handleProfile()}
                       className="d-flex justify-content-end mt-4"
                     >
