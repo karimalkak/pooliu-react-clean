@@ -7,15 +7,20 @@ import "./verify.scss"
 export default function Verify() {
   const state = useLocation();
   const {id, password, isLIU} = state.state;
+  
   var email ="";
   if(isLIU==1) email = id+"@students.liu.edu.lb";
   else if(isLIU==0) email = id+"@students.biu.edu.lb";
+
   const [verNumber1, setVerNumber1] = useState("");
   const [verNumber2, setVerNumber2] = useState("");
   const [verNumber3, setVerNumber3] = useState("");
   const [verNumber4, setVerNumber4] = useState("");
   const verNumber=1234;
-  var VerNumberByUser=verNumber1*1000+verNumber2*100+verNumber3*10+verNumber4;
+  var VerNumberByUser = verNumber1*1000 + 
+                        verNumber2*100 + 
+                        verNumber3*10 +
+                        verNumber4;
   function checkVerNumber(){
     if(verNumber===VerNumberByUser){
       return true;
