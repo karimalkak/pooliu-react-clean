@@ -1,7 +1,7 @@
 import React from "react";
-import "./login.scss"
+import "./resetpassword.scss"
 import { Link } from "react-router-dom";
-export default function Login(){
+export default function ResetPassword(){
   return (
     <div className="auth-pages d-flex align-items-center">
       <div className="container">
@@ -28,18 +28,19 @@ export default function Login(){
                 </Link>
               </div>
               <div className="card-body">
-                <h1 className="title">LOGIN</h1>
+                <h1 className="title">RESET PASSWORD</h1>
                 <div className="container">
                   <div className="row inputs mt-4 input-verify">
+                    <form>
                     <div className="col-12 d-flex justify-content-center ">
                       <input
-                        type="password"
+                        type="text"
                         className="form-control my-5 input-verify"
-                        id="inputID"
-                        placeholder="ID"
+                        id="inputCurrentPass"
+                        placeholder="Email"
                       />
                     </div>
-                    <div className="col-12 d-flex justify-content-center input-verify">
+                    <div className="col-12 d-flex justify-content-center input-verify mb-5">
                       <input
                         type="password"
                         className="form-control "
@@ -47,14 +48,23 @@ export default function Login(){
                         placeholder="PASSWORD"
                       />
                     </div>
-                    <div className="col-12 d-flex justify-content-end mt-2">
+                    <div className="col-12 d-flex justify-content-center input-verify">
+                      <input
+                        type="password"
+                        className="form-control "
+                        id="passwordCon"
+                        placeholder="CONFIRM PASSWORD"
+                      />
+                    </div>
+                    </form>
+                    <div className="col-12 d-flex justify-content-end ">
                       <button href="#" className="link m-0 link mt-2 buttons">
                         Forgot password?
                       </button>
                     </div>
                     <button
                       href="#"
-                      className="submit d-flex justify-content-center buttons"
+                      className="submit d-flex justify-content-center buttons "
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -118,14 +128,6 @@ export default function Login(){
                         </g>
                       </svg>
                     </button>
-                    <p className="d-flex justify-content-start mt-3">
-                      Don't have an account? &nbsp;
-                      <span>
-                        <Link to="/register" className="link">
-                          Sign Up
-                        </Link>
-                      </span>
-                    </p>
                   </div>
                 </div>
               </div>

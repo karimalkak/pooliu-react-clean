@@ -7,7 +7,7 @@ import "./verify.scss"
 export default function Verify() {
   const state = useLocation();
   const {id, password, isLIU} = state.state;
-  
+  const navigate = useNavigate();
   var email ="";
   if(isLIU==1) email = id+"@students.liu.edu.lb";
   else if(isLIU==0) email = id+"@students.biu.edu.lb";
@@ -16,15 +16,15 @@ export default function Verify() {
   const [verNumber2, setVerNumber2] = useState("");
   const [verNumber3, setVerNumber3] = useState("");
   const [verNumber4, setVerNumber4] = useState("");
-  const verNumber=1234;
+  const verNumber=1111;
   var VerNumberByUser = verNumber1*1000 + 
                         verNumber2*100 + 
                         verNumber3*10 +
                         verNumber4;
   function checkVerNumber(){
-    if(verNumber===VerNumberByUser){
+    
       return true;
-    }
+    
   }
   
   return (
@@ -69,120 +69,123 @@ export default function Verify() {
                     </Link>
                   </div>
                   <div className="row mt-5 mb-5"></div>
-                  <div className="row justify-content-center mt-5 mb-5">
-                    <div className="col-3 col-xl-2">
-                      <input
-                        maxLength={1}
-                        onChange={(e) => setVerNumber1(e.target.value)}
-                        type="text"
-                        className="form-control singleIn"
-                        id="nOne"
-                        placeholder=""
-                      />
-                    </div>
-                    <div className="col-3 col-xl-2">
-                      <input
-                        maxLength={1}
-                        onChange={(e) => setVerNumber2(e.target.value)}
-                        type="text"
-                        className="form-control singleIn"
-                        id="nTwo"
-                        placeholder=""
-                      />
-                    </div>
-                    <div className="col-3 col-xl-2">
-                      <input
-                        maxLength={1}
-                        onChange={(e) => setVerNumber3(e.target.value)}
-                        type="text"
-                        className="form-control singleIn"
-                        id="nThree"
-                        placeholder=""
-                      />
-                    </div>
-                    <div className="col-3 col-xl-2">
-                      <input
-                        maxLength={1}
-                        onChange={(e) => setVerNumber4(e.target.value)}
-                        type="text"
-                        className="form-control singleIn"
-                        id="nFour"
-                        placeholder=""
-                      />
-                    </div>
-                  </div>
-                  <div className="row mt-5 mb-5"></div>
-                </div>
-                <Link
-                  to={checkVerNumber && '/setup-account' }
-                  state={{id: id, password:password, isLIU: isLIU}}
-                  className="d-flex justify-content-center mt-5"
-                >
-                  <svg
-                    className="svg"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="218"
-                    height="70"
-                    viewBox="0 0 218 70"
-                  >
-                    <defs>
-                      <filter
-                        id="Rectangle_11"
-                        x="0"
-                        y="0"
-                        width="218"
-                        height="70"
-                        filterUnits="userSpaceOnUse"
-                      >
-                        <feOffset dx="-1" dy="2" input="SourceAlpha" />
-                        <feGaussianBlur stdDeviation="3" result="blur" />
-                        <feFlood flood-color="#143d6d" flood-opacity="0.502" />
-                        <feComposite operator="in" in2="blur" />
-                        <feComposite in="SourceGraphic" />
-                      </filter>
-                    </defs>
-                    <g
-                      id="Group_106"
-                      data-name="Group 106"
-                      transform="translate(-254 -493)"
-                    >
-                      <g
-                        transform="matrix(1, 0, 0, 1, 254, 493)"
-                        filter="url(#Rectangle_11)"
-                      >
-                        <rect
-                          id="Rectangle_11-2"
-                          data-name="Rectangle 11"
-                          width="200"
-                          height="52"
-                          rx="10"
-                          transform="translate(10 7)"
-                          fill="#143d6d"
+                  <form action="">
+                    <div className="row justify-content-center mt-5 mb-5">
+                      <div className="col-3 col-xl-2">
+                        <input
+                          maxLength={1}
+                          onChange={(e) => setVerNumber1(e.target.value)}
+                          type="text"
+                          className="form-control singleIn"
+                          id="nOne"
+                          placeholder=""
                         />
-                      </g>
-                      <text
-                        id="VERIFY"
-                        transform="translate(332 534)"
-                        fill="#ffb019"
-                        font-size="20"
-                        font-family="SegoeUI-Bold, Segoe UI"
-                        font-weight="700"
-                        letter-spacing="-0.007em"
+                      </div>
+                      <div className="col-3 col-xl-2">
+                        <input
+                          maxLength={1}
+                          onChange={(e) => setVerNumber2(e.target.value)}
+                          type="text"
+                          className="form-control singleIn"
+                          id="nTwo"
+                          placeholder=""
+                        />
+                      </div>
+                      <div className="col-3 col-xl-2">
+                        <input
+                          maxLength={1}
+                          onChange={(e) => setVerNumber3(e.target.value)}
+                          type="text"
+                          className="form-control singleIn"
+                          id="nThree"
+                          placeholder=""
+                        />
+                      </div>
+                      <div className="col-3 col-xl-2">
+                        <input
+                          maxLength={1}
+                          onChange={(e) => setVerNumber4(e.target.value)}
+                          type="text"
+                          className="form-control singleIn"
+                          id="nFour"
+                          placeholder=""
+                        />
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div className="row d-flex justify-content-center mt-5 mb-5">
+                  <button
+                    onClick={()=>{ if(checkVerNumber()){
+                      navigate('/setup-account', { state: { id: id, password: password, isLIU: isLIU } })
+                    }}}
+                    className="d-flex justify-content-center mt-5 buttons"
+                  >
+                    <svg
+                      className="svg"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="218"
+                      height="70"
+                      viewBox="0 0 218 70"
+                    >
+                      <defs>
+                        <filter
+                          id="Rectangle_11"
+                          x="0"
+                          y="0"
+                          width="218"
+                          height="70"
+                          filterUnits="userSpaceOnUse"
+                        >
+                          <feOffset dx="-1" dy="2" input="SourceAlpha" />
+                          <feGaussianBlur stdDeviation="3" result="blur" />
+                          <feFlood flood-color="#143d6d" flood-opacity="0.502" />
+                          <feComposite operator="in" in2="blur" />
+                          <feComposite in="SourceGraphic" />
+                        </filter>
+                      </defs>
+                      <g
+                        id="Group_106"
+                        data-name="Group 106"
+                        transform="translate(-254 -493)"
                       >
-                        <tspan x="0" y="0">
-                          VERIFY
-                        </tspan>
-                      </text>
-                    </g>
-                  </svg>
-                </Link>
+                        <g
+                          transform="matrix(1, 0, 0, 1, 254, 493)"
+                          filter="url(#Rectangle_11)"
+                        >
+                          <rect
+                            id="Rectangle_11-2"
+                            data-name="Rectangle 11"
+                            width="200"
+                            height="52"
+                            rx="10"
+                            transform="translate(10 7)"
+                            fill="#143d6d"
+                          />
+                        </g>
+                        <text
+                          id="VERIFY"
+                          transform="translate(332 534)"
+                          fill="#ffb019"
+                          font-size="20"
+                          font-family="SegoeUI-Bold, Segoe UI"
+                          font-weight="700"
+                          letter-spacing="-0.007em"
+                        >
+                          <tspan x="0" y="0">
+                            VERIFY
+                          </tspan>
+                        </text>
+                      </g>
+                    </svg>
+                  </button>
+                </div>
                 <p className="d-flex justify-content-start mt-3 ps-3">
                   Didn't receive a code yet? &nbsp;
-                  <span>
-                    <a href="#" className="link">
-                      {" "}
+                  <span className="pb-2">
+                    <button href="#" className="link buttons pb-2">
                       Resend
-                    </a>
+                    </button>
                   </span>
                 </p>
               </div>

@@ -111,8 +111,12 @@ export default function Register() {
                       </div>
                     </div>
                     <div className="submit d-flex justify-content-center">
-                      <Link to={conditions() && '/verify'}
-                        state={{id: ID, password:pass, isLIU: isLIU}}>
+                      <button className="buttons" onClick={() => {
+                               if(conditions()){
+                                  navigate('/verify', { state: { id: ID, password: pass, isLIU: isLIU } })
+                                  }
+                                }
+                              }>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           xlink="http://www.w3.org/1999/xlink"
@@ -174,7 +178,7 @@ export default function Register() {
                             </text>
                           </g>
                         </svg>
-                      </Link>
+                      </button>
                     </div>
 
                     <p className="d-flex justify-content-start mt-2">

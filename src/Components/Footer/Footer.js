@@ -11,7 +11,7 @@ export default function Footer(){
             <span>&copy; 2023 PooLIU. All rights reserved.</span>
           </div>
           <div className="col-xl-1 col-md-2 col-12 d-flex justify-content-center pb-md-0 pb-2  justify-content-md-end">
-            {/* <a href="" className="pe-3"> */}
+             <Link className="pe-3"> 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="21.7"
@@ -30,9 +30,9 @@ export default function Footer(){
                   stroke-width="1.7"
                 />
               </svg>
-            {/* </a> */}
+             </Link>
             {" "}
-            {/* <a href=""> */}
+            <Link className="ps-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="22"
@@ -46,7 +46,7 @@ export default function Footer(){
                   fill="#143d6d"
                 />
               </svg>
-            {/* </a> */}
+            </Link> 
           </div>
         </div>
       </div>

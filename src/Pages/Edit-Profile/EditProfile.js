@@ -2,24 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./setupaccount.scss"
+import "./editprofile.scss"
 import ReactDOM from 'react-dom/client';
 
 
-export default function SetupAccount() {
-  const Navigate = useNavigate();
+export default function EditProfile() {
+  const navigate = useNavigate();
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [gender, setGender] = useState("");
   const state = useLocation();
-  const {id, password, isLIU} = state.state;
+  const id = state.state;
   const [stylePP, setStylePP] = useState(
     "col-12 d-flex justify-content-center my-4 choose-pic"
   );
-  const onOptionChange = (e) => {
-    setGender(e.target.value);
-  };
   const [profilePic, setProfilePic] = useState();
   function handleProfilePicture(e) {
     console.log(e.target.files);
@@ -36,15 +32,11 @@ export default function SetupAccount() {
   }
   var user = ""
   function handleProfile(){
-   if(fname != null && lname != null && phoneNumber != null && gender != null){
+   if(fname != null && lname != null && phoneNumber != null){
     user={
-      ID: id,
-      Password: password,
-      isLIU: isLIU,
       FirstName:fname,
       LastName: lname,
       PhoneNumber: phoneNumber,
-      Gender: gender
     }
     return true;
   }
@@ -76,7 +68,7 @@ export default function SetupAccount() {
                 </Link>
               </div>
               <div className="card-body">
-                <h1 className="title">SET YOUR PROFILE</h1>
+                <h1 className="title">EDIT YOUR PROFILE</h1>
                 <div className="row inputs mt-4 input-verify">
                   <div className="col-lg-6 col-12 d-flex justify-content-center ">
                     <input
@@ -132,34 +124,17 @@ export default function SetupAccount() {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-6 col-12 d-flex justify-content-between mt-5 emails">
-                    <label className="email">GENDER:</label>
-                    <div>
-                      <input
-                        type="radio"
-                        id="male"
-                        name="gender"
-                        value="1"
-                        onChange={onOptionChange}
-                      />
-                      <label for="male">Male</label>
-                    </div>
-                    <div>
-                      <input
-                        type="radio"
-                        id="female"
-                        name="gender"
-                        value="0"
-                        onChange={onOptionChange}
-                      />
-                      <label for="female">Female</label>
-                    </div>
+                  <div className="col-lg-6">
+                    <button className="links buttons mt-4"
+                        onClick={()=> {navigate("/reset-password")}}>
+                        Reset Password
+                    </button>
                   </div>
                   <div className="col-lg-6 col-12 d-flex justify-content-end">
                     <button
-                      onClick={() => {
+                      onClick={() =>{
                         if(handleProfile()){
-                          Navigate('/main', { state: {id:id}})
+                            navigate('/main',{state:{id:id}})
                         }
                       }}
                       className="d-flex justify-content-end mt-4 buttons"

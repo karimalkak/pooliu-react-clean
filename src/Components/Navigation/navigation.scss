@@ -17,6 +17,12 @@ $light-blue-gray: #E8ECF1;
       height: 50px;
       border-radius:50%;
     }
+    .buttons{
+      background-color: white;
+      border-style: none;
+      color: $darker-blue;
+      font-weight: 500;
+    }
     .drop{
       a{
         text-decoration: none;

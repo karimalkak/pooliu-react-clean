@@ -86,7 +86,9 @@ export default function Home(){
         <div className="phone2">
           <div className="container">
             <div className="row">
-              <div className="col-6 image"></div>
+              <div className="col-6 image">
+              <img src="home10jpg.jpg" alt="" className="imgg"/>
+              </div>
               <div className="col-6 text">
                 <h2>...or offer one!</h2>
                 <p>

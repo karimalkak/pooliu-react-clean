@@ -13,8 +13,9 @@ import SetupAccount from './Pages/Setup-account/SetupAccount';
 import Verify from './Pages/Verify/Verify';
 import AllRides from './Pages/All-Rides/AllRides';
 import AllTrips from './Pages/All-Trips/AllTrips';
-import Main
- from './Pages/Main/Main';
+import EditProfile from './Pages/Edit-Profile/EditProfile';
+import ResetPassword from './Pages/Reset-Password/ResetPassword';
+import Main from './Pages/Main/Main';
  export default function App() {
   return (
         <Routes>
@@ -29,6 +30,8 @@ import Main
           <Route path="/all-rides" element={<AllRides/>} />
           <Route path="/all-trips" element={<AllTrips/>} />
           <Route path="/main" element={<Main/>} />
+          <Route path="/edit-profile" element={<EditProfile/>} />
+          <Route path="/reset-password" element={<ResetPassword/>} />
         </Routes> 
   );
 }

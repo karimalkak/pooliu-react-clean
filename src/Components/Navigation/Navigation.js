@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./navigation.scss"
 
 
 export default function Navigation(props){
+    const navigate = useNavigate();
     const ID = props.id;
   return(
     <nav className="nav p-0">
@@ -29,7 +31,10 @@ export default function Navigation(props){
             />
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li>
-                <Link className="dropdown-item d-flex align-items-center" href="#">
+                <button className="dropdown-item d-flex align-items-center" 
+                onClick={()=>{
+                    navigate('/edit-profile', {state:{id:ID}})
+                }}>
                     <svg
                     className="me-1"
                     xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +68,7 @@ export default function Navigation(props){
                     </g>
                     </svg>
                     Edit profile
-                </Link>
+                </button>
                 </li>
                 <li>
                 <hr className="dropdown-divider" />
@@ -216,7 +221,7 @@ export default function Navigation(props){
                 <hr className="dropdown-divider" />
                 </li>
                 <li>
-                <Link className="dropdown-item d-flex align-items-center" href="#">
+                <button className="dropdown-item d-flex align-items-center buttons">
                     <svg
                     className="me-1"
                     xmlns="http://www.w3.org/2000/svg"
@@ -234,7 +239,7 @@ export default function Navigation(props){
                     />
                     </svg>
                     Sign out
-                </Link>
+                </button>
                 </li>
             </ul>
             </div>

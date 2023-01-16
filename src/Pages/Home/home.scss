@@ -12,7 +12,9 @@ $blue-grey: #ECF0F3;
 $light-blue-gray: #E8ECF1;
 
 .home-page {
-
+  .imgg{
+    border-radius: 10px !important;
+  }
   .background{
     height: 100vh !important;
 
