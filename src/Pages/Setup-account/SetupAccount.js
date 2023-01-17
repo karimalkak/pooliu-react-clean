@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 import "./setupaccount.scss"
 import ReactDOM from 'react-dom/client';
 
@@ -26,14 +27,6 @@ export default function SetupAccount() {
     setProfilePic(URL.createObjectURL(e.target.files[0]));
   }
 
-  function showChooseFile() {
-    if (stylePP === "col-12 d-flex justify-content-center my-4 choose-pic") {
-      setStylePP("col-12 d-flex justify-content-center my-4");
-    }
-    if (stylePP === "col-12 d-flex justify-content-center my-4") {
-      setStylePP("col-12 d-flex justify-content-center my-4 choose-pic");
-    }
-  }
   var user = ""
   function handleProfile(){
    if(fname != null && lname != null && phoneNumber != null && gender != null){
@@ -49,9 +42,29 @@ export default function SetupAccount() {
     return true;
   }
   };
+
+  function setup() {
+
+    axios
+      .post("http://localhost:8000/api/setup", {
+        first_name: fname,
+        last_name: lname,
+        phone_num: phoneNumber,
+        profile_pic: profilePic,
+        gender: gender,
+        LIU_ID: id,
+      })
+      .then((response) => console.log(response))
+      .catch((error) => console.error(error));
+
+
+    if (handleProfile()) {
+      Navigate("/main", { state: { id: id } });
+    }
+  }
+
   return (
     <div className="auth-pages d-flex align-items-center pickride-page ">
-      
       <div className="container setup-page">
         <div className="row  d-flex justify-content-center">
           <div className="card card-sa">
@@ -111,11 +124,9 @@ export default function SetupAccount() {
                   </div>
                   <div className="col-lg-6 col-12 d-flex justify-content-center pickride-page px-3 my-5">
                     <button
-                      type="button"
-                      className="btn btn-outline-primary location-btn"
-                      data-bs-toggle="modal"
-                      data-bs-target="#map-modal"
-                      onClick={() => showChooseFile()}
+                      type="file"
+                      accept="image/png, image/jpeg"
+                      className="btn btn-outline-primary location-btn form-control"
                     >
                       PROFILE PICTURE
                       <span style={{ fontSize: 15 }}>&#40;OPTIONAL&#41;</span>
@@ -157,11 +168,7 @@ export default function SetupAccount() {
                   </div>
                   <div className="col-lg-6 col-12 d-flex justify-content-end">
                     <button
-                      onClick={() => {
-                        if(handleProfile()){
-                          Navigate('/main', { state: {id:id}})
-                        }
-                      }}
+                      onClick={setup}
                       className="d-flex justify-content-end mt-4 buttons"
                     >
                       <svg
