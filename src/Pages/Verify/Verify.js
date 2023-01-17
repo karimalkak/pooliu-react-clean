@@ -2,34 +2,44 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./verify.scss"
+import { useRef } from "react";
+import "./verify.scss";
 
 export default function Verify() {
   const state = useLocation();
-  const {id, password, isLIU} = state.state;
+  const { id, password, isLIU } = state.state;
   const navigate = useNavigate();
-  var email ="";
-  if(isLIU==1) email = id+"@students.liu.edu.lb";
-  else if(isLIU==0) email = id+"@students.biu.edu.lb";
+  var email = "";
+  if (isLIU == 1) email = id + "@students.liu.edu.lb";
+  else if (isLIU == 0) email = id + "@students.biu.edu.lb";
 
-  const [verNumber1, setVerNumber1] = useState("");
-  const [verNumber2, setVerNumber2] = useState("");
-  const [verNumber3, setVerNumber3] = useState("");
-  const [verNumber4, setVerNumber4] = useState("");
-  const verNumber=1111;
-  var VerNumberByUser = verNumber1*1000 + 
-                        verNumber2*100 + 
-                        verNumber3*10 +
-                        verNumber4;
-  function checkVerNumber(){
-    
-      return true;
-    
+  const input1Ref = useRef(null);
+  const input2Ref = useRef(null);
+  const input3Ref = useRef(null);
+  const input4Ref = useRef(null);
+  const inputsRef = [input1Ref, input2Ref, input3Ref, input4Ref];
+
+  const [inputValues, setInputValues] = useState(["", "", "", ""]);
+
+  const moveToNext = (e, index) => {
+    const input = e.target;
+    setInputValues((prevInputValues) => {
+      const newInputValues = [...prevInputValues];
+      newInputValues[index] = input.value;
+      return newInputValues;
+    });
+    if (input.value.length > 0) {
+      inputsRef[index + 1].current.focus();
+    }
+  };
+  function checkVerNumber() {
+    alert(inputValues);
+    return false;
   }
-  
+
   return (
     <div className="auth-pages d-flex align-items-center">
-      {console.log(id+" "+password+" "+isLIU)}
+      {console.log(id + " " + password + " " + isLIU)}
       <div className="container">
         <div className="row d-flex justify-content-center">
           <div className="col-5 p-0 container-mini container-mini-left">
@@ -64,7 +74,7 @@ export default function Verify() {
                     <h1 className="verEmail">{email}</h1>
                   </div>
                   <div className="row mt-3 mb-5">
-                    <Link to={'/register'} className="verEdit">
+                    <Link to={"/register"} className="verEdit">
                       Edit ID
                     </Link>
                   </div>
@@ -73,8 +83,10 @@ export default function Verify() {
                     <div className="row justify-content-center mt-5 mb-5">
                       <div className="col-3 col-xl-2">
                         <input
+                          ref={input1Ref}
                           maxLength={1}
-                          onChange={(e) => setVerNumber1(e.target.value)}
+                          value={inputValues[0]}
+                          onChange={(e) => moveToNext(e, 0)}
                           type="text"
                           className="form-control singleIn"
                           id="nOne"
@@ -83,8 +95,10 @@ export default function Verify() {
                       </div>
                       <div className="col-3 col-xl-2">
                         <input
+                          ref={input2Ref}
                           maxLength={1}
-                          onChange={(e) => setVerNumber2(e.target.value)}
+                          value={inputValues[1]}
+                          onChange={(e) => moveToNext(e, 1)}
                           type="text"
                           className="form-control singleIn"
                           id="nTwo"
@@ -93,8 +107,10 @@ export default function Verify() {
                       </div>
                       <div className="col-3 col-xl-2">
                         <input
+                          ref={input3Ref}
                           maxLength={1}
-                          onChange={(e) => setVerNumber3(e.target.value)}
+                          value={inputValues[2]}
+                          onChange={(e) => moveToNext(e, 2)}
                           type="text"
                           className="form-control singleIn"
                           id="nThree"
@@ -103,8 +119,10 @@ export default function Verify() {
                       </div>
                       <div className="col-3 col-xl-2">
                         <input
+                          ref={input4Ref}
                           maxLength={1}
-                          onChange={(e) => setVerNumber4(e.target.value)}
+                          value={inputValues[3]}
+                          onChange={(e) => moveToNext(e, 3)}
                           type="text"
                           className="form-control singleIn"
                           id="nFour"
@@ -116,9 +134,13 @@ export default function Verify() {
                 </div>
                 <div className="row d-flex justify-content-center mt-5 mb-5">
                   <button
-                    onClick={()=>{ if(checkVerNumber()){
-                      navigate('/setup-account', { state: { id: id, password: password, isLIU: isLIU } })
-                    }}}
+                    onClick={() => {
+                      if (checkVerNumber()) {
+                        navigate("/setup-account", {
+                          state: { id: id, password: password, isLIU: isLIU },
+                        });
+                      }
+                    }}
                     className="d-flex justify-content-center mt-5 buttons"
                   >
                     <svg
@@ -139,7 +161,10 @@ export default function Verify() {
                         >
                           <feOffset dx="-1" dy="2" input="SourceAlpha" />
                           <feGaussianBlur stdDeviation="3" result="blur" />
-                          <feFlood flood-color="#143d6d" flood-opacity="0.502" />
+                          <feFlood
+                            flood-color="#143d6d"
+                            flood-opacity="0.502"
+                          />
                           <feComposite operator="in" in2="blur" />
                           <feComposite in="SourceGraphic" />
                         </filter>
@@ -199,5 +224,3 @@ export default function Verify() {
     </div>
   );
 }
-
-
