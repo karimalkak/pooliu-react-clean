@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./register.scss"
 
 
@@ -31,6 +32,25 @@ export default function Register() {
       return true;
     }
   }
+
+  function register(){
+    axios
+      .post("http://localhost:8000/api/register", {
+        LIU_ID: ID,
+        password: pass,
+        confirm_password: cpass,
+        is_LIU: isLIU,
+      })
+      .then((response) => console.log(response))
+      .catch((error) => console.error(error));
+
+    if (conditions()) {
+      navigate("/verify", {
+        state: { id: ID, password: pass, isLIU: isLIU },
+      });
+    }
+  }
+
   return (
     <div className="auth-pages d-flex align-items-center">
       <div className="container">
@@ -111,12 +131,10 @@ export default function Register() {
                       </div>
                     </div>
                     <div className="submit d-flex justify-content-center">
-                      <button className="buttons" onClick={() => {
-                               if(conditions()){
-                                  navigate('/verify', { state: { id: ID, password: pass, isLIU: isLIU } })
-                                  }
-                                }
-                              }>
+                      <button
+                        className="buttons"
+                        onClick={register}
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           xlink="http://www.w3.org/1999/xlink"

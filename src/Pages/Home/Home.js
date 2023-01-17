@@ -1,6 +1,7 @@
 import React from "react";
 import Footer from "../../Components/Footer/Footer";
 import HomeNavigation from "../../Components/Home-navigation/HomeNavigation";
+
 import "animate.css";
 import './home.scss';
 
