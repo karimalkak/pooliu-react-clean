@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./footer.scss"
+import "./footer.scss";
 
-export default function Footer(){
+export default function Footer() {
   return (
     <footer className="home-footer">
       <div className="container py-4">
@@ -11,7 +11,7 @@ export default function Footer(){
             <span>&copy; 2023 PooLIU. All rights reserved.</span>
           </div>
           <div className="col-xl-1 col-md-2 col-12 d-flex justify-content-center pb-md-0 pb-2  justify-content-md-end">
-             <Link className="pe-3"> 
+            <Link className="pe-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="21.7"
@@ -24,14 +24,13 @@ export default function Footer(){
                   transform="translate(0.35 0.35)"
                   fill="none"
                   stroke="#143d6d"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   stroke-miterlimit="10"
-                  stroke-width="1.7"
+                  strokeWidth="1.7"
                 />
               </svg>
-             </Link>
-            {" "}
+            </Link>{" "}
             <Link className="ps-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -46,11 +45,10 @@ export default function Footer(){
                   fill="#143d6d"
                 />
               </svg>
-            </Link> 
+            </Link>
           </div>
         </div>
       </div>
     </footer>
   );
-};
-
+}

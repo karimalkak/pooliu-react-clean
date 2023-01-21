@@ -1,9 +1,9 @@
 import React from "react";
 import Navigation from "../../Components/Navigation/Navigation";
 import { Link } from "react-router-dom";
-import "./pickride.scss"
+import "./pickride.scss";
 
-export default function PickRide(){
+export default function PickRide() {
   return (
     <>
       <Navigation />
@@ -37,9 +37,9 @@ export default function PickRide(){
                     transform="translate(1.5 2.536)"
                     fill="none"
                     stroke="#ffb019"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="5"
                     fill-rule="evenodd"
                   />
                 </svg>
@@ -89,7 +89,7 @@ export default function PickRide(){
                     >
                       <feOffset dx="-1" dy="2" input="SourceAlpha" />
                       <feGaussianBlur stdDeviation="3" result="blur" />
-                      <feFlood flood-color="#143d6d" flood-opacity="0.502" />
+                      <feFlood floodColor="#143d6d" floodOpacity="0.502" />
                       <feComposite operator="in" in2="blur" />
                       <feComposite in="SourceGraphic" />
                     </filter>
@@ -117,9 +117,9 @@ export default function PickRide(){
                       id="PICK"
                       transform="translate(1076 606)"
                       fill="#ffb019"
-                      font-size="18"
-                      font-family="SegoeUI-Bold, Segoe UI"
-                      font-weight="700"
+                      fontSize="18"
+                      fontFamily="SegoeUI-Bold, Segoe UI"
+                      fontWeight="700"
                     >
                       <tspan x="0" y="0">
                         PICK
@@ -140,7 +140,7 @@ export default function PickRide(){
                 </div>
                 <div className="col-6 d-flex justify-content-end">
                   <Link to="">
-                    <img src="filter.svg" alt=""/>
+                    <img src="filter.svg" alt="" />
                   </Link>
                 </div>
               </div>
@@ -160,6 +160,4 @@ export default function PickRide(){
       </div>
     </>
   );
-};
-
-
+}

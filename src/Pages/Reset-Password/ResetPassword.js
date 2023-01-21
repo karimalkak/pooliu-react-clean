@@ -1,7 +1,7 @@
 import React from "react";
-import "./resetpassword.scss"
+import "./resetpassword.scss";
 import { Link } from "react-router-dom";
-export default function ResetPassword(){
+export default function ResetPassword() {
   return (
     <div className="auth-pages d-flex align-items-center">
       <div className="container">
@@ -32,30 +32,30 @@ export default function ResetPassword(){
                 <div className="container">
                   <div className="row inputs mt-4 input-verify">
                     <form>
-                    <div className="col-12 d-flex justify-content-center ">
-                      <input
-                        type="text"
-                        className="form-control my-5 input-verify"
-                        id="inputCurrentPass"
-                        placeholder="Email"
-                      />
-                    </div>
-                    <div className="col-12 d-flex justify-content-center input-verify mb-5">
-                      <input
-                        type="password"
-                        className="form-control "
-                        id="password"
-                        placeholder="PASSWORD"
-                      />
-                    </div>
-                    <div className="col-12 d-flex justify-content-center input-verify">
-                      <input
-                        type="password"
-                        className="form-control "
-                        id="passwordCon"
-                        placeholder="CONFIRM PASSWORD"
-                      />
-                    </div>
+                      <div className="col-12 d-flex justify-content-center ">
+                        <input
+                          type="text"
+                          className="form-control my-5 input-verify"
+                          id="inputCurrentPass"
+                          placeholder="Email"
+                        />
+                      </div>
+                      <div className="col-12 d-flex justify-content-center input-verify mb-5">
+                        <input
+                          type="password"
+                          className="form-control "
+                          id="password"
+                          placeholder="PASSWORD"
+                        />
+                      </div>
+                      <div className="col-12 d-flex justify-content-center input-verify">
+                        <input
+                          type="password"
+                          className="form-control "
+                          id="passwordCon"
+                          placeholder="CONFIRM PASSWORD"
+                        />
+                      </div>
                     </form>
                     <div className="col-12 d-flex justify-content-end ">
                       <button href="#" className="link m-0 link mt-2 buttons">
@@ -85,8 +85,8 @@ export default function ResetPassword(){
                             <feOffset dx="-1" dy="2" input="SourceAlpha" />
                             <feGaussianBlur stdDeviation="3" result="blur" />
                             <feFlood
-                              flood-color="#143d6d"
-                              flood-opacity="0.502"
+                              floodColor="#143d6d"
+                              floodOpacity="0.502"
                             />
                             <feComposite operator="in" in2="blur" />
                             <feComposite in="SourceGraphic" />
@@ -116,10 +116,10 @@ export default function ResetPassword(){
                             data-name="LET'S GO"
                             transform="translate(322 555)"
                             fill="#ffb019"
-                            font-size="20"
-                            font-family="SegoeUI-Bold, Segoe UI"
-                            font-weight="700"
-                            letter-spacing="-0.007em"
+                            fontSize="20"
+                            fontFamily="SegoeUI-Bold, Segoe UI"
+                            fontWeight="700"
+                            letterSpacing="-0.007em"
                           >
                             <tspan x="0" y="0">
                               LET&apos;S GO
@@ -140,6 +140,4 @@ export default function ResetPassword(){
       </div>
     </div>
   );
-};
-
-
+}

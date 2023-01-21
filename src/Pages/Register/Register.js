@@ -3,14 +3,9 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./register.scss"
-
-
-
+import "./register.scss";
 
 export default function Register() {
-
-
   const [ID, setID] = useState("");
   const [pass, setPass] = useState("");
   const [cpass, setCpass] = useState("");
@@ -27,13 +22,13 @@ export default function Register() {
       IDlen < 9 &&
       pass === cpass &&
       PassLen > 7 &&
-      isLIU != ""
+      isLIU !== ""
     ) {
       return true;
     }
   }
 
-  function register(){
+  function register() {
     axios
       .post("http://localhost:8000/api/register", {
         LIU_ID: ID,
@@ -131,10 +126,7 @@ export default function Register() {
                       </div>
                     </div>
                     <div className="submit d-flex justify-content-center">
-                      <button
-                        className="buttons"
-                        onClick={register}
-                      >
+                      <button className="buttons" onClick={register}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           xlink="http://www.w3.org/1999/xlink"
@@ -154,8 +146,8 @@ export default function Register() {
                               <feOffset dx="-1" dy="2" input="SourceAlpha" />
                               <feGaussianBlur stdDeviation="3" result="blur" />
                               <feFlood
-                                flood-color="#143d6d"
-                                flood-opacity="0.502"
+                                floodColor="#143d6d"
+                                floodOpacity="0.502"
                               />
                               <feComposite operator="in" in2="blur" />
                               <feComposite in="SourceGraphic" />
@@ -185,10 +177,10 @@ export default function Register() {
                               data-name="CREATE ACCOUNT"
                               transform="translate(137 563)"
                               fill="#ffb019"
-                              font-size="20"
-                              font-family="SegoeUI-Bold, Segoe UI"
-                              font-weight="700"
-                              letter-spacing="-0.007em"
+                              fontSize="20"
+                              fontFamily="SegoeUI-Bold, Segoe UI"
+                              fontWeight="700"
+                              letterSpacing="-0.007em"
                             >
                               <tspan x="0" y="0">
                                 CREATE ACCOUNT
@@ -220,5 +212,3 @@ export default function Register() {
     </div>
   );
 }
-
-

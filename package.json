@@ -2,6 +2,8 @@
   "name": "pooliu",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8000",
+  "homepage": ".",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
     "@syncfusion/ej2-react-calendars": "^20.4.42",

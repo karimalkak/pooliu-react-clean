@@ -1,21 +1,21 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./homenav.scss";
- 
-export default function HomeNavigation(){
+
+export default function HomeNavigation() {
   return (
     <nav className="home-nav navbar p-0">
       <div className="container nav-container">
         <div className="test row d-flex justify-content-lg-between">
           <div className="col-12 col-lg-6">
-            <Link to={'/home'} className="navbar-brand">
+            <Link to={"/home"} className="navbar-brand">
               <img src="logo.svg" alt="logo" className="logo" />
             </Link>
           </div>
           <div className="col-12 col-lg-6 d-flex justify-content-lg-end justify-content-center">
             <div className="row">
               <div className="col-12 col-lg-6 d-flex align-items-center justify-content-center">
-                <Link to={'/login'} className="pe-lg-3">
+                <Link to={"/login"} className="pe-lg-3">
                   <svg
                     id="Component_1_2"
                     xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ export default function HomeNavigation(){
                                 transform="translate(0 -3)"
                                 fill="#ffb019"
                                 stroke="#ffb019"
-                                stroke-width="0.7"
+                                strokeWidth="0.7"
                               />
                             </g>
                           </g>
@@ -65,7 +65,7 @@ export default function HomeNavigation(){
                 </Link>
               </div>
               <div className="col-12 col-lg-6 d-flex align-items-lg-center justify-content-center">
-                <Link to={'/register'}>
+                <Link to={"/register"}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="120"
@@ -105,7 +105,7 @@ export default function HomeNavigation(){
                                   transform="translate(0 -0.7)"
                                   fill="#103158"
                                   stroke="#103158"
-                                  stroke-width="0.7"
+                                  strokeWidth="0.7"
                                 />
                               </g>
                             </g>
@@ -122,4 +122,4 @@ export default function HomeNavigation(){
       </div>
     </nav>
   );
-};
+}

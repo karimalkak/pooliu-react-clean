@@ -1,23 +1,29 @@
 import React from "react";
 import Navigation from "../../Components/Navigation/Navigation";
 import Footer from "../../Components/Footer/Footer";
-import "./main.scss"
+import "./main.scss";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function Main(){
-
+function Main() {
+  const navigate = useNavigate();
   const state = useLocation();
-  const id = state.state
-  const ID = id.id
+  const id = state.state;
+  const ID = id.id;
+
+  function createTrip() {
+    navigate("/create-trip", { state: { id: ID } });
+  }
+
   return (
     <>
-      <Navigation id={ID}/>
+      <Navigation id={ID} />
       <div className="main-page d-flex align-items-center">
         <div className="container">
           <div className="row">
             <div className="col-6 col-lg-3 d-flex justify-content-center p-2 p-lg-0">
-              <Link to={'/pick-ride'}>
+              <Link to={"/pick-ride"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="230"
@@ -81,11 +87,11 @@ function Main(){
                       </tspan>
                     </text>
                   </g>
-                </svg>  
+                </svg>
               </Link>
             </div>
             <div className="col-6 col-lg-3 d-flex justify-content-center p-2 p-lg-0">
-              <Link to={'/all-rides'}>
+              <Link to={"/all-rides"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="230"
@@ -275,7 +281,7 @@ function Main(){
               </Link>
             </div>
             <div className="col-6 col-lg-3 d-flex justify-content-center p-2 p-lg-0">
-              <Link to={'/create-trip'}>
+              <button className="buttons" onClick={() => createTrip()}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="230"
@@ -366,10 +372,10 @@ function Main(){
                     </text>
                   </g>
                 </svg>
-              </Link>
+              </button>
             </div>
             <div className="col-6 col-lg-3 d-flex justify-content-center p-2 p-lg-0">
-              <Link to={'/all-trips'}>
+              <Link to={"/all-trips"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="230"
@@ -652,6 +658,6 @@ function Main(){
       <Footer />
     </>
   );
-};
+}
 
 export default Main;

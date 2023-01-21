@@ -11,8 +11,8 @@ export default function Verify() {
   const { id, password, isLIU } = state.state;
   const navigate = useNavigate();
   var email = "";
-  if (isLIU == 1) email = id + "@students.liu.edu.lb";
-  else if (isLIU == 0) email = id + "@students.biu.edu.lb";
+  if (isLIU === 1) email = id + "@students.liu.edu.lb";
+  else if (isLIU === 0) email = id + "@students.biu.edu.lb";
 
   const input1Ref = useRef(null);
   const input2Ref = useRef(null);
@@ -42,8 +42,8 @@ export default function Verify() {
       .post("http://localhost:8000/api/verify", {
         digit1: inputValues[0],
         digit2: inputValues[1],
-        digit3: inputValues[3],
-        digit4: inputValues[4],
+        digit3: inputValues[2],
+        digit4: inputValues[3],
         password: password,
       })
       .then((response) => console.log(response))
@@ -51,7 +51,7 @@ export default function Verify() {
 
     if (checkVerNumber()) {
       navigate("/setup-account", {
-        state: { id: id, password: password, isLIU: isLIU },
+        state: { id: id },
       });
     }
   }
@@ -174,10 +174,7 @@ export default function Verify() {
                         >
                           <feOffset dx="-1" dy="2" input="SourceAlpha" />
                           <feGaussianBlur stdDeviation="3" result="blur" />
-                          <feFlood
-                            flood-color="#143d6d"
-                            flood-opacity="0.502"
-                          />
+                          <feFlood floodColor="#143d6d" floodOpacity="0.502" />
                           <feComposite operator="in" in2="blur" />
                           <feComposite in="SourceGraphic" />
                         </filter>
@@ -205,10 +202,10 @@ export default function Verify() {
                           id="VERIFY"
                           transform="translate(332 534)"
                           fill="#ffb019"
-                          font-size="20"
-                          font-family="SegoeUI-Bold, Segoe UI"
-                          font-weight="700"
-                          letter-spacing="-0.007em"
+                          fontSize="20"
+                          fontFamily="SegoeUI-Bold, Segoe UI"
+                          fontWeight="700"
+                          letterSpacing="-0.007em"
                         >
                           <tspan x="0" y="0">
                             VERIFY

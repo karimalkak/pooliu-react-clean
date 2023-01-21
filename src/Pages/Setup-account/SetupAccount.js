@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./setupaccount.scss"
-import ReactDOM from 'react-dom/client';
 
 
 export default function SetupAccount() {
@@ -14,31 +13,15 @@ export default function SetupAccount() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
   const state = useLocation();
-  const {id, password, isLIU} = state.state;
-  const [stylePP, setStylePP] = useState(
-    "col-12 d-flex justify-content-center my-4 choose-pic"
-  );
+  const {id} = state.state;
+  const [profilePic, setProfilePic] = useState("");
+  
   const onOptionChange = (e) => {
     setGender(e.target.value);
   };
-  const [profilePic, setProfilePic] = useState();
-  function handleProfilePicture(e) {
-    console.log(e.target.files);
-    setProfilePic(URL.createObjectURL(e.target.files[0]));
-  }
-
-  var user = ""
+  
   function handleProfile(){
    if(fname != null && lname != null && phoneNumber != null && gender != null){
-    user={
-      ID: id,
-      Password: password,
-      isLIU: isLIU,
-      FirstName:fname,
-      LastName: lname,
-      PhoneNumber: phoneNumber,
-      Gender: gender
-    }
     return true;
   }
   };
@@ -123,25 +106,12 @@ export default function SetupAccount() {
                     />
                   </div>
                   <div className="col-lg-6 col-12 d-flex justify-content-center pickride-page px-3 my-5">
-                    <button
+                    <input
                       type="file"
                       accept="image/png, image/jpeg"
                       className="btn btn-outline-primary location-btn form-control"
-                    >
-                      PROFILE PICTURE
-                      <span style={{ fontSize: 15 }}>&#40;OPTIONAL&#41;</span>
-                    </button>
-                  </div>
-                  <div className={stylePP}>
-                    <div className="row">
-                      <div className="col-10">
-                        <input
-                          className="btn btn btn-outline-primary location-btn"
-                          type="file"
-                          onChange={handleProfilePicture}
-                        />
-                      </div>
-                    </div>
+                      onChange={(e) => setProfilePic(e.target.files[0])}
+                    />
                   </div>
                   <div className="col-lg-6 col-12 d-flex justify-content-between mt-5 emails">
                     <label className="email">GENDER:</label>
@@ -197,18 +167,13 @@ export default function SetupAccount() {
                             <feComposite in="SourceGraphic" />
                           </filter>
                         </defs>
-                        <g
-                          id="Group_17"
-                          dataName="Group 17"
-                          transform="translate(-1026 -569)"
-                        >
+                        <g id="Group_17" transform="translate(-1026 -569)">
                           <g
                             transform="matrix(1, 0, 0, 1, 1026, 569)"
                             filter="url(#Rectangle_11)"
                           >
                             <rect
                               id="Rectangle_11-2"
-                              dataName="Rectangle 11"
                               width="99"
                               height="40"
                               rx="10"
