@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate} from "react-router-dom";
 import { useRef } from "react";
 import axios from "axios";
@@ -10,7 +10,6 @@ export default function Verify() {
   const id = localStorage.getItem("liu_id");
   const password = localStorage.getItem("password");
   const isLIU = localStorage.getItem("is_liu");
-  console.log({id, password, isLIU});
   const navigate = useNavigate();
   var email = "";
   if (isLIU === 1) email = id + "@students.liu.edu.lb";
@@ -38,6 +37,21 @@ export default function Verify() {
   function checkVerNumber() {
     return true;
   }
+
+  const getUser = async () => {
+    try {
+      const result = await axios.get(
+        `http://localhost:8000/api/show/?liu_id=${id}`
+      );
+      localStorage.setItem("id", result.data.user.users[0].id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   function verify() {
     axios

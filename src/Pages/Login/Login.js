@@ -12,7 +12,6 @@ export default function Login() {
   const [isPasswordValid, setIsPasswordValid] = useState(true);
 
 
-
   function login() {
 
     if (ID == null) {
@@ -39,6 +38,17 @@ export default function Login() {
       })
       .catch((error) => console.error(error));
 
+      const getUser = async () => {
+        try {
+          const result = await axios.get(
+            `http://localhost:8000/api/show/?liu_id=${ID}`
+          );
+          localStorage.setItem("id", result.data.user.users[0].id);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      getUser();
     
   }
   return (

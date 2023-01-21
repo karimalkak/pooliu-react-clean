@@ -20,7 +20,6 @@ export default function Navigation() {
   }
   return (
     <nav className="nav p-0">
-      {ID}
       <div className="container">
         <div className="row d-flex justify-content-between align-items-center">
           <div className="col-md-3 col-5 pt-3">

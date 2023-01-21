@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./editprofile.scss";
 
@@ -10,15 +10,16 @@ export default function EditProfile() {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const state = useLocation();
-  const id = state.state;
-  const [profilePic, setProfilePic] = useState();
+  const id = localStorage.getItem("liu_id");
+  const [profilePic, setProfilePic] = useState("");
+
 
   const getUser = async () => {
     try {
       const result = await axios.get(
-        `http://localhost:8000/api/show/?liu_id=${id.id}`
+        `http://localhost:8000/api/show/?liu_id=${id}`
       );
+      console.log(result.data);
       setFname(result.data.user.users[0].first_name);
       setLname(result.data.user.users[0].last_name);
       setPhoneNumber(result.data.user.users[0].phone_num);
@@ -32,16 +33,33 @@ export default function EditProfile() {
     getUser();
   }, []);
 
-  var user = "";
+
   function handleProfile() {
-    if (fname != null && lname != null && phoneNumber != null) {
-      user = {
-        FirstName: fname,
-        LastName: lname,
-        PhoneNumber: phoneNumber,
-      };
+    if (
+      fname != null &&
+      lname != null &&
+      phoneNumber != null
+    ) {
       return true;
     }
+  }
+
+  function edit() {
+    axios
+      .post("http://localhost:8000/api/edit", {
+        first_name: fname,
+        last_name: lname,
+        phone_num: phoneNumber,
+        profile_pic: profilePic,
+        LIU_ID: id,
+      })
+      .then((response) => {
+        console.log(response);
+        if (handleProfile()) {
+          navigate("/main");
+        }
+      })
+      .catch((error) => console.error(error));
   }
   return (
     <div className="auth-pages d-flex align-items-center pickride-page ">
@@ -108,8 +126,8 @@ export default function EditProfile() {
                   <div className="col-lg-6 col-12 d-flex justify-content-center pickride-page px-3 my-5">
                     <input
                       type="file"
+                      accept="image/png, image/jpeg"
                       className="location-btn form-control"
-                      value={profilePic}
                       onChange={(e) => setProfilePic(e.target.files[0])}
                     />
                   </div>
@@ -125,11 +143,7 @@ export default function EditProfile() {
                   </div>
                   <div className="col-lg-6 col-12 d-flex justify-content-end">
                     <button
-                      onClick={() => {
-                        if (handleProfile()) {
-                          navigate("/main", { state: { id: id } });
-                        }
-                      }}
+                      onClick={edit}
                       className="d-flex justify-content-end mt-4 buttons"
                     >
                       <svg

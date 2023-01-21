@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navigation from "../../Components/Navigation/Navigation";
 import "./createtrip.scss";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 import axios from "axios";
 export default function CreateTrip() {
   const [time, setTime] = useState(null);
@@ -223,11 +224,11 @@ export default function CreateTrip() {
     if (seatCount > 1) setSeatCount(seatCount - 1);
   }
   function isGoingFun() {
-    if (isGoing == 0) {
+    if (isGoing === 0) {
       setStyleIsGoing("rotate");
       setIsGoing(1);
     }
-    if (isGoing == 1) {
+    if (isGoing === 1) {
       setStyleIsGoing("buttons");
       setIsGoing(0);
     }
@@ -248,28 +249,30 @@ export default function CreateTrip() {
         isGoing: isGoing,
         rideType: rideType,
       };
-      navigate("/main");
-      //BACK END CODE HERE
     }
   }
 
-  // function register() {
-  //   axios
-  //     .post("http://localhost:8000/api/trips", {
-  //       LIU_ID: ID,
-  //       password: pass,
-  //       confirm_password: cpass,
-  //       is_LIU: isLIU,
-  //     })
-  //     .then((response) => console.log(response))
-  //     .catch((error) => console.error(error));
-
-  //   if (conditions()) {
-  //     navigate("/verify", {
-  //       state: { id: ID, password: pass, isLIU: isLIU },
-  //     });
-  //   }
-  // }
+  function create() {
+    popSome();
+    let momentTime = moment(time, "HH:mm");
+    let formattedTime = momentTime.format("HH:mm:ss");
+    console.log(localStorage.getItem("id"));
+    axios
+      .post("http://localhost:8000/api/trips", {
+        driver_id: localStorage.getItem("id"),
+        location: location,
+        is_going: isGoing,
+        campus: campusSite,
+        date: date,
+        time: formattedTime,
+        ride_type: rideType,
+        seats: seatCount,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => console.error(error));
+  }
 
   return (
     <>
@@ -449,7 +452,7 @@ export default function CreateTrip() {
             </div>
           </div>
           <div className="container d-flex justify-content-lg-end justify-content-center">
-            <button className="create" onClick={() => popSome()}>
+            <button className="create" onClick={() => create()}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="138"
