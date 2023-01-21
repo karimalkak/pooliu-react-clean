@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 import "./register.scss";
 
 export default function Register() {
@@ -37,6 +38,7 @@ export default function Register() {
         is_LIU: isLIU,
       })
 
+
       .then((response) => {
         console.log(response);
         localStorage.setItem("liu_id", ID);
@@ -47,6 +49,7 @@ export default function Register() {
         }
       })
       .catch((error) => console.error(error));
+
   }
 
   return (
