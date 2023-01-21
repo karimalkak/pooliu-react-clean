@@ -1,49 +1,68 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import "./editprofile.scss"
-import ReactDOM from 'react-dom/client';
-
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import "./editprofile.scss";
 
 export default function EditProfile() {
   const navigate = useNavigate();
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const state = useLocation();
-  const id = state.state;
-  const [stylePP, setStylePP] = useState(
-    "col-12 d-flex justify-content-center my-4 choose-pic"
-  );
-  const [profilePic, setProfilePic] = useState();
-  function handleProfilePicture(e) {
-    console.log(e.target.files);
-    setProfilePic(URL.createObjectURL(e.target.files[0]));
+  const id = localStorage.getItem("liu_id");
+  const [profilePic, setProfilePic] = useState("");
+
+
+  const getUser = async () => {
+    try {
+      const result = await axios.get(
+        `http://localhost:8000/api/show/?liu_id=${id}`
+      );
+      console.log(result.data);
+      setFname(result.data.user.users[0].first_name);
+      setLname(result.data.user.users[0].last_name);
+      setPhoneNumber(result.data.user.users[0].phone_num);
+      //setProfilePic(URL.createObjectURL(result.data.user.users[0].profile_pic));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+
+  function handleProfile() {
+    if (
+      fname != null &&
+      lname != null &&
+      phoneNumber != null
+    ) {
+      return true;
+    }
   }
 
-  function showChooseFile() {
-    if (stylePP === "col-12 d-flex justify-content-center my-4 choose-pic") {
-      setStylePP("col-12 d-flex justify-content-center my-4");
-    }
-    if (stylePP === "col-12 d-flex justify-content-center my-4") {
-      setStylePP("col-12 d-flex justify-content-center my-4 choose-pic");
-    }
+  function edit() {
+    axios
+      .post("http://localhost:8000/api/edit", {
+        first_name: fname,
+        last_name: lname,
+        phone_num: phoneNumber,
+        profile_pic: profilePic,
+        LIU_ID: id,
+      })
+      .then((response) => {
+        console.log(response);
+        if (handleProfile()) {
+          navigate("/main");
+        }
+      })
+      .catch((error) => console.error(error));
   }
-  var user = ""
-  function handleProfile(){
-   if(fname != null && lname != null && phoneNumber != null){
-    user={
-      FirstName:fname,
-      LastName: lname,
-      PhoneNumber: phoneNumber,
-    }
-    return true;
-  }
-  };
   return (
     <div className="auth-pages d-flex align-items-center pickride-page ">
-      
       <div className="container setup-page">
         <div className="row  d-flex justify-content-center">
           <div className="card card-sa">
@@ -77,6 +96,7 @@ export default function EditProfile() {
                       className="form-control my-5 input-verify"
                       id="inputFirstName"
                       placeholder="FIRST NAME"
+                      value={fname}
                     />
                   </div>
                   <div className="col-lg-6 col-12 d-flex justify-content-center ">
@@ -86,6 +106,7 @@ export default function EditProfile() {
                       className="form-control my-5 input-verify"
                       id="inputLastName"
                       placeholder="LAST NAME"
+                      value={lname}
                     />
                   </div>
                 </div>
@@ -99,44 +120,30 @@ export default function EditProfile() {
                       className="form-control my-5 input-verify"
                       id="inputFirstName"
                       placeholder="PHONE NUMBER"
+                      value={phoneNumber}
                     />
                   </div>
                   <div className="col-lg-6 col-12 d-flex justify-content-center pickride-page px-3 my-5">
-                    <button
-                      type="button"
-                      className="btn btn-outline-primary location-btn"
-                      data-bs-toggle="modal"
-                      data-bs-target="#map-modal"
-                      onClick={() => showChooseFile()}
-                    >
-                      PROFILE PICTURE
-                      <span style={{ fontSize: 15 }}>&#40;OPTIONAL&#41;</span>
-                    </button>
-                  </div>
-                  <div className={stylePP}>
-                    <div className="row">
-                      <div className="col-10">
-                        <input
-                          className="btn btn btn-outline-primary location-btn"
-                          type="file"
-                          onChange={handleProfilePicture}
-                        />
-                      </div>
-                    </div>
+                    <input
+                      type="file"
+                      accept="image/png, image/jpeg"
+                      className="location-btn form-control"
+                      onChange={(e) => setProfilePic(e.target.files[0])}
+                    />
                   </div>
                   <div className="col-lg-6">
-                    <button className="links buttons mt-4"
-                        onClick={()=> {navigate("/reset-password")}}>
-                        Reset Password
+                    <button
+                      className="links buttons mt-4"
+                      onClick={() => {
+                        navigate("/reset-password");
+                      }}
+                    >
+                      Reset Password
                     </button>
                   </div>
                   <div className="col-lg-6 col-12 d-flex justify-content-end">
                     <button
-                      onClick={() =>{
-                        if(handleProfile()){
-                            navigate('/main',{state:{id:id}})
-                        }
-                      }}
+                      onClick={edit}
                       className="d-flex justify-content-end mt-4 buttons"
                     >
                       <svg
@@ -165,18 +172,13 @@ export default function EditProfile() {
                             <feComposite in="SourceGraphic" />
                           </filter>
                         </defs>
-                        <g
-                          id="Group_17"
-                          dataName="Group 17"
-                          transform="translate(-1026 -569)"
-                        >
+                        <g id="Group_17" transform="translate(-1026 -569)">
                           <g
                             transform="matrix(1, 0, 0, 1, 1026, 569)"
                             filter="url(#Rectangle_11)"
                           >
                             <rect
                               id="Rectangle_11-2"
-                              dataName="Rectangle 11"
                               width="99"
                               height="40"
                               rx="10"
@@ -209,4 +211,3 @@ export default function EditProfile() {
     </div>
   );
 }
-

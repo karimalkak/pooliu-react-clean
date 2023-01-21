@@ -1,60 +1,13 @@
-.card{
-    width: 100%;
-    border: 0;
-    .count{
-      font-size: 20px;
-      font-weight: 500;
-      color: $dark-blue;
-    }
-
-    .driver{
-        border: $dark-blue solid 1px;
-        border-radius: 7px;
-        margin-bottom: 10px;
-        .profile-pic {
-          height: 65px;
-          border-radius: 50%;
-        }
-
-        .details{
-          color: $dark-blue;
-          font-size: 14px;
-          font-weight: 500;
-        }
-
-        .name{
-          color: $dark-blue;
-          font-size: 22px;
-          font-weight: 500;
-        }
-
-        h6{
-          color: $dark-grey;
-          font-size: 15px;
-          font-weight: 500;
-        }
-    }
-
-    .pagination{
-
-      .page-link.active-page{
-        color: $white;
-        background-color: $dark-blue;
-      }
-
-      a{
-        border-radius: 50%;
-        font-weight: bold;
-        font-size: 18px;
-        color: $dark-blue;
-        margin: 0px 5px;
-        border: 0;
-        padding: 2px 10px;
-      }
-     
-    }
+.card {
+  width: 100%;
+  border: 0;
+  .count {
+    font-size: 20px;
+    font-weight: 500;
+    color: $dark-blue;
   }
-  .driver{
+
+  .driver {
     border: $dark-blue solid 1px;
     border-radius: 7px;
     margin-bottom: 10px;
@@ -63,33 +16,77 @@
       border-radius: 50%;
     }
 
-    .details{
+    .details {
       color: $dark-blue;
       font-size: 14px;
       font-weight: 500;
     }
 
-    .name{
+    .name {
       color: $dark-blue;
       font-size: 22px;
       font-weight: 500;
     }
 
-    h6{
+    h6 {
       color: $dark-grey;
       font-size: 15px;
       font-weight: 500;
     }
+  }
+
+  .pagination {
+    .page-link.active-page {
+      color: $white;
+      background-color: $dark-blue;
+    }
+
+    a {
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 18px;
+      color: $dark-blue;
+      margin: 0px 5px;
+      border: 0;
+      padding: 2px 10px;
+    }
+  }
+}
+.driver {
+  border: $dark-blue solid 1px;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  .profile-pic {
+    height: 65px;
+    border-radius: 50%;
+  }
+
+  .details {
+    color: $dark-blue;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .name {
+    color: $dark-blue;
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  h6 {
+    color: $dark-grey;
+    font-size: 15px;
+    font-weight: 500;
+  }
 }
 
-.pagination{
-
-  .page-link.active-page{
+.pagination {
+  .page-link.active-page {
     color: $white;
     background-color: $dark-blue;
   }
 
-  a{
+  a {
     border-radius: 50%;
     font-weight: bold;
     font-size: 18px;
@@ -98,5 +95,4 @@
     border: 0;
     padding: 2px 10px;
   }
- 
 }

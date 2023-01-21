@@ -1,7 +1,56 @@
 import React from "react";
-import "./login.scss"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import "./login.scss";
 import { Link } from "react-router-dom";
-export default function Login(){
+export default function Login() {
+  const navigate = useNavigate();
+  const [ID, setID] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [isIDValid, setIsIDValid] = useState(true);
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
+
+
+  function login() {
+
+    if (ID == null) {
+      setIsIDValid(false);
+    } else {
+      setIsIDValid(true);
+    }
+
+    if (password < 8) {
+      setIsPasswordValid(false);
+    } else {
+      setIsPasswordValid(true);
+    }
+
+    axios
+      .post("http://localhost:8000/api/login", {
+        LIU_ID: ID,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem("liu_id", ID);
+        navigate("/main");
+      })
+      .catch((error) => console.error(error));
+
+      const getUser = async () => {
+        try {
+          const result = await axios.get(
+            `http://localhost:8000/api/show/?liu_id=${ID}`
+          );
+          localStorage.setItem("id", result.data.user.users[0].id);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      getUser();
+    
+  }
   return (
     <div className="auth-pages d-flex align-items-center">
       <div className="container">
@@ -31,21 +80,49 @@ export default function Login(){
                 <h1 className="title">LOGIN</h1>
                 <div className="container">
                   <div className="row inputs mt-4 input-verify">
-                    <div className="col-12 d-flex justify-content-center ">
+                    <div className="col-12 d-flex justify-content-center">
                       <input
+                        onKeyUp={(e) => {
+                          setID(e.target.value);
+                          if (e.target.value === "") {
+                            setIsIDValid(false);
+                          } else {
+                            setIsIDValid(true);
+                          }
+                        }}
                         type="password"
                         className="form-control my-5 input-verify"
                         id="inputID"
                         placeholder="ID"
                       />
                     </div>
+                    <div className="col-12">
+                      {!isIDValid && (
+                        <span className="text-danger">ID is required</span>
+                      )}
+                    </div>
                     <div className="col-12 d-flex justify-content-center input-verify">
                       <input
+                        onKeyUp={(e) => {
+                          setPassword(e.target.value);
+                          if (e.target.value.length < 8) {
+                            setIsPasswordValid(false);
+                          } else {
+                            setIsPasswordValid(true);
+                          }
+                        }}
                         type="password"
                         className="form-control "
                         id="password"
                         placeholder="PASSWORD"
                       />
+                    </div>
+                    <div className="col-12">
+                      {!isPasswordValid && (
+                        <span className="text-danger">
+                          Password must be at least 8 characters
+                        </span>
+                      )}
                     </div>
                     <div className="col-12 d-flex justify-content-end mt-2">
                       <button href="#" className="link m-0 link mt-2 buttons">
@@ -53,7 +130,7 @@ export default function Login(){
                       </button>
                     </div>
                     <button
-                      href="#"
+                      onClick={login}
                       className="submit d-flex justify-content-center buttons"
                     >
                       <svg
@@ -75,8 +152,8 @@ export default function Login(){
                             <feOffset dx="-1" dy="2" input="SourceAlpha" />
                             <feGaussianBlur stdDeviation="3" result="blur" />
                             <feFlood
-                              flood-color="#143d6d"
-                              flood-opacity="0.502"
+                              floodColor="#143d6d"
+                              floodOpacity="0.502"
                             />
                             <feComposite operator="in" in2="blur" />
                             <feComposite in="SourceGraphic" />
@@ -106,10 +183,10 @@ export default function Login(){
                             data-name="LET'S GO"
                             transform="translate(322 555)"
                             fill="#ffb019"
-                            font-size="20"
-                            font-family="SegoeUI-Bold, Segoe UI"
-                            font-weight="700"
-                            letter-spacing="-0.007em"
+                            fontSize="20"
+                            fontFamily="SegoeUI-Bold, Segoe UI"
+                            fontWeight="700"
+                            letterSpacing="-0.007em"
                           >
                             <tspan x="0" y="0">
                               LET&apos;S GO
@@ -138,6 +215,4 @@ export default function Login(){
       </div>
     </div>
   );
-};
-
-
+}
