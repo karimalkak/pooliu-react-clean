@@ -28,7 +28,9 @@ export default function EditProfile() {
     }
   };
 
-  getUser();
+  useEffect(() => {
+    getUser();
+  }, []);
 
   var user = "";
   function handleProfile() {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./setupaccount.scss"
 
@@ -12,8 +12,7 @@ export default function SetupAccount() {
   const [lname, setLname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
-  const state = useLocation();
-  const {id} = state.state;
+  const id = localStorage.getItem("liu_id");
   const [profilePic, setProfilePic] = useState("");
   
   const onOptionChange = (e) => {
@@ -37,13 +36,13 @@ export default function SetupAccount() {
         gender: gender,
         LIU_ID: id,
       })
-      .then((response) => console.log(response))
+      .then((response) => {
+        console.log(response);
+        if (handleProfile()) {
+          Navigate("/main");
+        }
+      })
       .catch((error) => console.error(error));
-
-
-    if (handleProfile()) {
-      Navigate("/main", { state: { id: id } });
-    }
   }
 
   return (

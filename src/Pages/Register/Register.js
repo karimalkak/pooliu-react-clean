@@ -36,14 +36,17 @@ export default function Register() {
         confirm_password: cpass,
         is_LIU: isLIU,
       })
-      .then((response) => console.log(response))
-      .catch((error) => console.error(error));
 
-    if (conditions()) {
-      navigate("/verify", {
-        state: { id: ID, password: pass, isLIU: isLIU },
-      });
-    }
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem("liu_id", ID);
+        localStorage.setItem("password", pass);
+        localStorage.setItem("is_liu", isLIU);
+        if (conditions()) {
+          navigate("/verify");
+        }
+      })
+      .catch((error) => console.error(error));
   }
 
   return (

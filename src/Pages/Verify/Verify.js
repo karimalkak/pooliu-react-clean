@@ -1,14 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { useRef } from "react";
 import axios from "axios";
 import "./verify.scss";
 
 export default function Verify() {
-  const state = useLocation();
-  const { id, password, isLIU } = state.state;
+  const id = localStorage.getItem("liu_id");
+  const password = localStorage.getItem("password");
+  const isLIU = localStorage.getItem("is_liu");
+  console.log({id, password, isLIU});
   const navigate = useNavigate();
   var email = "";
   if (isLIU === 1) email = id + "@students.liu.edu.lb";
@@ -46,14 +48,13 @@ export default function Verify() {
         digit4: inputValues[3],
         password: password,
       })
-      .then((response) => console.log(response))
+      .then((response) => {
+        console.log(response);
+        if (checkVerNumber()) {
+          navigate("/setup-account");
+        }
+      })
       .catch((error) => console.error(error));
-
-    if (checkVerNumber()) {
-      navigate("/setup-account", {
-        state: { id: id },
-      });
-    }
   }
 
   return (

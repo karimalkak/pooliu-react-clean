@@ -14,6 +14,19 @@ export default function Login() {
 
 
   function login() {
+
+    if (ID == null) {
+      setIsIDValid(false);
+    } else {
+      setIsIDValid(true);
+    }
+
+    if (password < 8) {
+      setIsPasswordValid(false);
+    } else {
+      setIsPasswordValid(true);
+    }
+
     axios
       .post("http://localhost:8000/api/login", {
         LIU_ID: ID,
@@ -21,7 +34,8 @@ export default function Login() {
       })
       .then((response) => {
         console.log(response);
-        navigate("/main", { state: { id: ID } });
+        localStorage.setItem("liu_id", ID);
+        navigate("/main");
       })
       .catch((error) => console.error(error));
 
@@ -56,9 +70,9 @@ export default function Login() {
                 <h1 className="title">LOGIN</h1>
                 <div className="container">
                   <div className="row inputs mt-4 input-verify">
-                    <div className="col-12 d-flex justify-content-center ">
+                    <div className="col-12 d-flex justify-content-center">
                       <input
-                        onChange={(e) => {
+                        onKeyUp={(e) => {
                           setID(e.target.value);
                           if (e.target.value === "") {
                             setIsIDValid(false);
@@ -71,13 +85,15 @@ export default function Login() {
                         id="inputID"
                         placeholder="ID"
                       />
+                    </div>
+                    <div className="col-12">
                       {!isIDValid && (
                         <span className="text-danger">ID is required</span>
                       )}
                     </div>
                     <div className="col-12 d-flex justify-content-center input-verify">
                       <input
-                        onChange={(e) => {
+                        onKeyUp={(e) => {
                           setPassword(e.target.value);
                           if (e.target.value.length < 8) {
                             setIsPasswordValid(false);
@@ -90,6 +106,8 @@ export default function Login() {
                         id="password"
                         placeholder="PASSWORD"
                       />
+                    </div>
+                    <div className="col-12">
                       {!isPasswordValid && (
                         <span className="text-danger">
                           Password must be at least 8 characters

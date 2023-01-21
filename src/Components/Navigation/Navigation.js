@@ -1,18 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./navigation.scss";
 
-export default function Navigation(props) {
+export default function Navigation() {
   const navigate = useNavigate();
-  const ID = props.id;
+  const ID = localStorage.getItem("liu_id");
+
+  function logout() {
+
+    axios
+      .post("http://localhost:8000/api/logout")
+      .then((response) => {
+        console.log(response);
+        navigate("/");
+      })
+      .catch((error) => console.error(error));
+  }
   return (
     <nav className="nav p-0">
       {ID}
       <div className="container">
         <div className="row d-flex justify-content-between align-items-center">
           <div className="col-md-3 col-5 pt-3">
-            <Link className="navbar-brand" to="/">
+            <Link className="navbar-brand" to="/main">
               <img src="logo-2.svg" alt="logo" />
             </Link>
           </div>
@@ -224,7 +236,10 @@ export default function Navigation(props) {
                 <hr className="dropdown-divider" />
               </li>
               <li>
-                <button className="dropdown-item d-flex align-items-center buttons">
+                <button
+                  className="dropdown-item d-flex align-items-center buttons"
+                  onClick={logout}
+                >
                   <svg
                     className="me-1"
                     xmlns="http://www.w3.org/2000/svg"

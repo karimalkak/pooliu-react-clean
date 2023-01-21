@@ -3,22 +3,18 @@ import Navigation from "../../Components/Navigation/Navigation";
 import Footer from "../../Components/Footer/Footer";
 import "./main.scss";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function Main() {
   const navigate = useNavigate();
-  const state = useLocation();
-  const id = state.state;
-  const ID = id.id;
 
   function createTrip() {
-    navigate("/create-trip", { state: { id: ID } });
+    navigate("/create-trip");
   }
 
   return (
     <>
-      <Navigation id={ID} />
+      <Navigation />
       <div className="main-page d-flex align-items-center">
         <div className="container">
           <div className="row">
