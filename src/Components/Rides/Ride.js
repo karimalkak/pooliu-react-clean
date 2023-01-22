@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Rating from "react-rating";
+import axios from "axios";
+import "./ride.scss";
 
-export default function Ride() {
+export default function Ride({ name, rating, time, date, campus }) {
   return (
     <>
       <div className="container ride p-2">
@@ -12,9 +14,9 @@ export default function Ride() {
           <div className="col-6 ">
             <div className="row">
               <div className="col-12 col-lg-6">
-                <h3 className="name">lorem ipsum</h3>
+                <h3 className="name">{name}</h3>
                 <Rating
-                  initialRating={4}
+                  initialRating={rating}
                   readonly
                   emptySymbol={<img src="empty-wheel.svg" className="icon" />}
                   fullSymbol={<img src="full-wheel.svg" className="icon" />}
@@ -57,7 +59,7 @@ export default function Ride() {
                       />
                     </g>
                   </svg>
-                  <span className="details">Going to Beirut campus</span>
+                  <span className="details">Going to {campus} campus</span>
                 </div>
                 <div className="date">
                   <svg
@@ -76,7 +78,7 @@ export default function Ride() {
                       fill-rule="evenodd"
                     />
                   </svg>
-                  <span className="details">Monday 28 Jan 2023</span>
+                  <span className="details">{date}</span>
                 </div>
                 <div className="time">
                   <svg
@@ -95,121 +97,52 @@ export default function Ride() {
                       strokeWidth="0.3"
                     />
                   </svg>
-                  <span className="details">Arrive before 9:30</span>
+                  <span className="details">Arrive before {time}</span>
                 </div>
               </div>
             </div>
           </div>
-          <div className="col-3 col-lg-5 d-flex align-items-center justify-content-end p-0">
+          <div className="col-3 col-lg-5 d-flex align-items-center justify-content-center p-0">
             <div className="row">
-              <div className="col-12 col-lg-5 me-lg-2 ms-5 ms-lg-0 mb-2 mb-lg-0">
-                <a href="">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="150"
-                    height="41"
-                    viewBox="0 0 96 26"
+              <div className="col-12 col-lg-12 me-lg-2 ms-5 ms-lg-0 mb-2 mb-lg-0">
+                {/* <button className="request" onClick={() => request()}> */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="153"
+                  height="41"
+                  viewBox="0 0 153 41"
+                >
+                  <g
+                    id="Group_51"
+                    data-name="Group 51"
+                    transform="translate(-428 -330)"
                   >
-                    <g
-                      id="Group_151"
-                      data-name="Group 151"
-                      transform="translate(-428 -330)"
+                    <rect
+                      id="Rectangle_5"
+                      data-name="Rectangle 5"
+                      width="153"
+                      height="41"
+                      rx="7"
+                      transform="translate(428 330)"
+                      fill="#df2020"
+                    />
+                    <text
+                      id="REMOVE_REQUEST"
+                      data-name="REMOVE REQUEST"
+                      transform="translate(437 357)"
+                      fill="#fff"
+                      font-size="16"
+                      font-family="SegoeUI-Semibold, Segoe UI"
+                      font-weight="600"
+                      letter-spacing="-0.007em"
                     >
-                      <rect
-                        id="Rectangle_5"
-                        data-name="Rectangle 5"
-                        width="96"
-                        height="26"
-                        rx="5"
-                        transform="translate(428 330)"
-                        fill="#143d6d"
-                      />
-                      <text
-                        id="VIEW_ROAD"
-                        data-name="VIEW ROAD"
-                        transform="translate(458 347)"
-                        fill="#fff"
-                        font-size="10"
-                        fontFamily="SegoeUI-Semibold, Segoe UI"
-                        fontWeight="600"
-                        letterSpacing="-0.007em"
-                      >
-                        <tspan x="0" y="0">
-                          VIEW ROAD
-                        </tspan>
-                      </text>
-                      <g id="destination" transform="translate(439.98 336.001)">
-                        <path
-                          id="Path_87"
-                          data-name="Path 87"
-                          d="M20.933,33.035H14.081a.293.293,0,0,1,0-.586h6.851a1.319,1.319,0,0,0,0-2.638H11.895a1.905,1.905,0,0,1,0-3.811H21.37a.293.293,0,0,1,0,.586H11.895a1.319,1.319,0,0,0,0,2.638h9.038a1.905,1.905,0,0,1,0,3.811Z"
-                          transform="translate(-9.554 -20.794)"
-                          fill="#fff"
-                          stroke="#fff"
-                          strokeWidth="1"
-                        />
-                        <path
-                          id="Path_86"
-                          data-name="Path 86"
-                          d="M8,46.1l.619-2.052L8,42l3.811,2.052Z"
-                          transform="translate(-8 -32.104)"
-                          fill="#ffb019"
-                          stroke="#ffb019"
-                          strokeWidth="1"
-                        />
-                        <path
-                          id="Path_85"
-                          data-name="Path 85"
-                          d="M44.052,8A2.052,2.052,0,0,0,42,10.026a3.568,3.568,0,0,0,2.052,2.958A3.568,3.568,0,0,0,46.1,10.026,2.052,2.052,0,0,0,44.052,8Zm0,2.9a.862.862,0,1,1,.879-.862A.879.879,0,0,1,44.052,10.9Z"
-                          transform="translate(-32.244 -8)"
-                          fill="#df2020"
-                          stroke="#df2020"
-                          strokeWidth="1"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-              <div className="col-12 col-lg-5 me-lg-4 ms-5 ms-lg-0 mt-2 mt-lg-0">
-                <a href="">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="150"
-                    height="41"
-                    viewBox="0 0 96 26"
-                  >
-                    <g
-                      id="Group_51"
-                      data-name="Group 51"
-                      transform="translate(-428.918 -330)"
-                    >
-                      <rect
-                        id="Rectangle_5"
-                        data-name="Rectangle 5"
-                        width="96"
-                        height="26"
-                        rx="5"
-                        transform="translate(428.918 330)"
-                        fill="#df2020"
-                      />
-                      <text
-                        id="REMOVE_REQUEST"
-                        data-name="REMOVE REQUEST"
-                        transform="translate(434.918 347.001)"
-                        fill="#fff"
-                        font-size="10"
-                        fontFamily="SegoeUI-Semibold, Segoe UI"
-                        fontWeight="600"
-                        letterSpacing="-0.007em"
-                      >
-                        <tspan x="0" y="0">
-                          REMOVE REQUEST
-                        </tspan>
-                      </text>
-                    </g>
-                  </svg>
-                </a>
+                      <tspan x="0" y="0">
+                        REMOVE REQUEST
+                      </tspan>
+                    </text>
+                  </g>
+                </svg>
+                {/* </button> */}
               </div>
             </div>
           </div>

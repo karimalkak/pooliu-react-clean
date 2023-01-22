@@ -11,72 +11,38 @@ $dark-grey: #a0a0a0;
 $blue-grey: #ecf0f3;
 $light-blue-gray: #e8ecf1;
 
-.rides {
-  .accordion-item {
-    border-top: $dark-blue solid 3px;
-    border-left: $dark-blue solid 3px;
-    border-right: $dark-blue solid 3px;
 
-    .accordion-button {
+
+  .request{
+    background-color: transparent !important;
+    border: 0;
+  }
+
+  .ride {
+    border: $dark-blue solid 1px !important;
+    border-radius: 7px;
+    .profile-pic {
+      height: 65px;
+      border-radius: 50%;
+    }
+
+    .details {
       color: $dark-blue;
-      font-size: 24px;
-      font-weight: 700;
-      background-color: $light-blue-gray;
+      font-size: 14px;
+      font-weight: 500;
     }
 
-    .accordion-button::after {
-      background-image: url("../../../public/arrow-down-1.svg");
-    }
-
-    .accordion-body {
-      .ride {
-        border: $dark-blue solid 1px;
-        border-radius: 7px;
-        .profile-pic {
-          height: 65px;
-          border-radius: 50%;
-        }
-
-        .details {
-          color: $dark-blue;
-          font-size: 14px;
-          font-weight: 500;
-        }
-
-        .name {
-          color: $dark-blue;
-          font-size: 22px;
-          font-weight: 500;
-        }
-      }
+    .name {
+      color: $dark-blue;
+      font-size: 22px;
+      font-weight: 500;
     }
   }
 
-  .last-item {
-    border-bottom: $dark-blue solid 3px;
-  }
-}
+  
+
+
 //responsiveness
-
-@media screen and (max-width: 1400px) {
-  .auth-pages {
-    .container-mini-right {
-      background-image: url("../public/auth.svg");
-      background-size: cover;
-      border-radius: 0px 30px 30px 0px;
-    }
-    // .container-mini-left{
-    //   //width: 100%;
-
-    // }
-    .cards {
-      border-radius: 30px 0px 0px 30px;
-    }
-    .img {
-      display: none;
-    }
-  }
-}
 
 @media screen and (min-width: 992px) {
   .pick-container {

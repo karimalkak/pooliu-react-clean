@@ -1,40 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import Navigation from "../../Components/Navigation/Navigation";
 import Accordion from "../../Components/Accordion/Accordion";
-import Footer from "../../Components/Footer/Footer";
-import './alltrips.scss'
+import Trip from "../../Components/Trips/trip";
+import Ride from "../../Components/Rides/Ride";
+import axios from "axios";
+import "./alltrips.scss";
 
 const AllTrips = () => {
+  // const [isPicked, setIsPicked] = useState(false);
+  // const [noDrivers, setNoDrivers] = useState(false);
+  const [name, setName] = useState([]);
+  const [rating, setRating] = useState([]);
+  const [date, setDate] = useState([]);
+  const [location, setLocation] = useState([]);
+  const [campus, setCampus] = useState([]);
+
+  // const pick = async () => {
+  //   try {
+  //     const result = await axios.get(
+  //       `http://localhost:8000/api/my-trips?user_id=${localStorage.getItem("id")}`
+  //     );
+  //     console.log(result.data);
+  //     if (result.data.trips.trips.length === 0) {
+  //       setNoDrivers(true);
+  //       setIsPicked(false);
+  //     } else {
+  //       for (let i = 0; i < result.data.trips.trips.length; i++) {
+  //         setName(result.data.trips.trips[i].driver_name);
+  //         setRating(result.data.rides.trips[i].driver_score);
+  //         setTime(result.data.rides.trips[i].time);
+  //         setId(result.data.rides.trips[i].id);
+  //       }
+  //       setIsPicked(true);
+  //       setNoDrivers(false);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   return (
     <>
       <Navigation />
       <div className="all-rides">
         <div className="container">
           <h1 className="my-5">MY TRIPS</h1>
-          <div className="d-flex justify-content-end m-3">
-            <a href="">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="41.099"
-                height="38.423"
-                viewBox="0 0 41.099 38.423"
-              >
-                <path
-                  id="filter"
-                  d="M2.337,8.683h.19a5.321,5.321,0,0,0,10.314,0H39.763a1.337,1.337,0,1,0,0-2.673H12.84a5.321,5.321,0,0,0-10.314,0h-.19a1.337,1.337,0,1,0,0,2.673Zm5.347-4.01A2.673,2.673,0,1,1,5.01,7.346,2.673,2.673,0,0,1,7.683,4.673Zm32.079,14.7h-.19a5.321,5.321,0,0,0-10.314,0H2.337a1.337,1.337,0,1,0,0,2.673H29.259a5.321,5.321,0,0,0,10.314,0h.19a1.337,1.337,0,1,0,0-2.673Zm-5.347,4.01a2.673,2.673,0,1,1,2.673-2.673A2.673,2.673,0,0,1,34.416,23.386Zm5.347,9.356H26.206a5.321,5.321,0,0,0-10.314,0H2.337a1.337,1.337,0,1,0,0,2.673H15.893a5.321,5.321,0,0,0,10.314,0H39.763a1.337,1.337,0,0,0,0-2.673ZM21.05,36.752a2.673,2.673,0,1,1,2.673-2.673A2.673,2.673,0,0,1,21.05,36.752Z"
-                  transform="translate(-0.5 -1.501)"
-                  fill="#143d6d"
-                  stroke="#143d6d"
-                  strokeWidth="1"
-                />
-              </svg>
-            </a>
-          </div>
-
-          <Accordion />
+          <Trip />          
         </div>
       </div>
-      <Footer />
     </>
   );
 };
