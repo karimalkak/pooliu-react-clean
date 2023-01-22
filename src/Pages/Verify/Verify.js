@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import { useState, useEffect } from "react";
 import { useNavigate} from "react-router-dom";
 import { useRef } from "react";
@@ -14,6 +15,7 @@ export default function Verify() {
   var email = "";
   if (isLIU === 1) email = id + "@students.liu.edu.lb";
   else if (isLIU === 0) email = id + "@students.biu.edu.lb";
+
 
   const input1Ref = useRef(null);
   const input2Ref = useRef(null);
@@ -168,7 +170,9 @@ export default function Verify() {
                 </div>
                 <div className="row d-flex justify-content-center mt-5 mb-5">
                   <button
+
                     onClick={verify}
+
                     className="d-flex justify-content-center mt-5 buttons"
                   >
                     <svg
@@ -189,7 +193,9 @@ export default function Verify() {
                         >
                           <feOffset dx="-1" dy="2" input="SourceAlpha" />
                           <feGaussianBlur stdDeviation="3" result="blur" />
+
                           <feFlood floodColor="#143d6d" floodOpacity="0.502" />
+
                           <feComposite operator="in" in2="blur" />
                           <feComposite in="SourceGraphic" />
                         </filter>
