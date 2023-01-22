@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Navigation from "../../Components/Navigation/Navigation";
 import "./createtrip.scss";
 import { useNavigate } from "react-router-dom";
-import moment from "moment";
 import axios from "axios";
 export default function CreateTrip() {
   const [time, setTime] = useState(null);
@@ -11,6 +10,7 @@ export default function CreateTrip() {
   const [styleIsGoing, setStyleIsGoing] = useState("buttons mts-4");
   const [isGoing, setIsGoing] = useState(0);
   const [rideType, setRideType] = useState("Ride");
+  const [isCreated, setIsCreated] = useState(false);
   const navigate = useNavigate();
   const options = [
     { value: "CITY", text: "CITY" },
@@ -254,9 +254,6 @@ export default function CreateTrip() {
 
   function create() {
     popSome();
-    let momentTime = moment(time, "HH:mm");
-    let formattedTime = momentTime.format("HH:mm:ss");
-    console.log(localStorage.getItem("id"));
     axios
       .post("http://localhost:8000/api/trips", {
         driver_id: localStorage.getItem("id"),
@@ -264,12 +261,13 @@ export default function CreateTrip() {
         is_going: isGoing,
         campus: campusSite,
         date: date,
-        time: formattedTime,
+        time: time,
         ride_type: rideType,
         seats: seatCount,
       })
       .then((response) => {
         console.log(response);
+        setIsCreated(true)
       })
       .catch((error) => console.error(error));
   }
@@ -510,47 +508,16 @@ export default function CreateTrip() {
               </svg>
             </button>
           </div>
-          <div
-            className="modal fade"
-            id="map-modal"
-            tabindex="-1"
-            aria-labelledby="map-modal"
-            aria-hidden="true"
-          >
-            <div className="modal-dialog modal-dialog-centered">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title" id="address-label">
-                    Modal title
-                  </h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
+          <div className="row d-flex justify-content-center">
+            <div className="col-4">
+              {isCreated && (
+                <div
+                  class="container alert alert-success d-flex align-items-center justify-content-center"
+                  role="alert"
+                >
+                  <div>Trip Created Successfully!</div>
                 </div>
-                <div className="modal-body">
-                  <a className="skiplink" href="#map">
-                    Go to map
-                  </a>
-                  <div id="map" className="map" tabindex="0"></div>
-                  <button id="zoom-out">Zoom out</button>
-                  <button id="zoom-in">Zoom in</button>
-                </div>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button type="button" className="btn btn-primary">
-                    Save changes
-                  </button>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </main>

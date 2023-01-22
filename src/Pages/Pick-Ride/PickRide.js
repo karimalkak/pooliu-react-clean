@@ -1,9 +1,264 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navigation from "../../Components/Navigation/Navigation";
+import Driver from "../../Components/Driver/driver";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./pickride.scss";
 
 export default function PickRide() {
+  const [date, setDate] = useState(null);
+  const [campusSite, setCampusSite] = useState(null);
+  const [styleIsGoing, setStyleIsGoing] = useState("buttons mts-4");
+  const [isGoing, setIsGoing] = useState(0);
+  const navigate = useNavigate();
+  const [name, setName] = useState([]);
+  const [rating, setRating] = useState([]);
+  const [time, setTime] = useState([]);
+  const [id, setId] = useState([]);
+  const [isPicked, setIsPicked] = useState(false);
+  const [noDrivers, setNoDrivers] = useState(false);
+  const options = [
+    { value: "CITY", text: "CITY" },
+    { value: "1", text: "Baabda" },
+    { value: "2", text: "Borj el Brajneh" },
+    { value: "3", text: "Hazmieh" },
+    { value: "4", text: "Hadath" },
+    { value: "5", text: "Hammana" },
+    { value: "6", text: "Chebanieh" },
+    { value: "7", text: "Ras el Matn" },
+    { value: "8", text: "Chiyah" },
+    { value: "9", text: "Ghbeireh" },
+    { value: "10", text: "Falougha" },
+    { value: "11", text: "Furn el Chebbak" },
+    { value: "12", text: "Kornayel" },
+    { value: "13", text: "Kfarchima" },
+    { value: "14", text: "Wadi Chahrour" },
+    { value: "15", text: "Abadiyeh" },
+    { value: "16", text: "Salima" },
+    { value: "17", text: "Jdeideh" },
+    { value: "18", text: "Bourj Hammoud" },
+    { value: "19", text: "Bauchrieh" },
+    { value: "20", text: "Antelias" },
+    { value: "21", text: "Brummana" },
+    { value: "22", text: "Baabdat" },
+    { value: "23", text: "Bikfaya" },
+    { value: "24", text: "Beit Chabab" },
+    { value: "25", text: "Beit Mery" },
+    { value: "26", text: "Chewyeh" },
+    { value: "27", text: "Jal el Dib" },
+    { value: "28", text: "Dekwaneh" },
+    { value: "29", text: "Zalka" },
+    { value: "30", text: "Sin el Fil" },
+    { value: "31", text: "Dbayeh" },
+    { value: "32", text: "Kornet Chehwan" },
+    { value: "33", text: "Aintoura" },
+    { value: "34", text: "Choueir" },
+    { value: "35", text: "Khenchara" },
+    { value: "36", text: "Bteghrine" },
+    { value: "37", text: "Baskinta" },
+    { value: "38", text: "Abey - Ain Drafil" },
+    { value: "39", text: "Aghmid" },
+    { value: "40", text: "Ain Dara" },
+    { value: "41", text: "Ain el Remmaneh" },
+    { value: "42", text: "Ain el Sayde" },
+    { value: "43", text: "Ain Jedideh" },
+    { value: "44", text: "Ain Ksour" },
+    { value: "45", text: "Ain Onoub" },
+    { value: "46", text: "Ainab" },
+    { value: "47", text: "Aley" },
+    { value: "48", text: "Aramoun el Ghareb" },
+    { value: "49", text: "Baawerta" },
+    { value: "50", text: "Badghan" },
+    { value: "51", text: "Baissour" },
+    { value: "52", text: "Bassatine" },
+    { value: "53", text: "Bchamoun" },
+    { value: "54", text: "Bdadoun" },
+    { value: "55", text: "Bemkine" },
+    { value: "56", text: "Bennieh" },
+    { value: "57", text: "Bhamdoun el Balda" },
+    { value: "58", text: "Bhamdoun el Mhatta" },
+    { value: "59", text: "Bkhechtey" },
+    { value: "60", text: "Bleibel" },
+    { value: "61", text: "Bmahray" },
+    { value: "62", text: "Bserrine" },
+    { value: "63", text: "Bsouss" },
+    { value: "64", text: "Btalloun" },
+    { value: "65", text: "Btater" },
+    { value: "66", text: "Chanay" },
+    { value: "67", text: "Charoun" },
+    { value: "68", text: "Chartoun" },
+    { value: "69", text: "Chemlan" },
+    { value: "70", text: "Choueifat" },
+    { value: "71", text: "Deir Koubel" },
+    { value: "72", text: "Dfoun" },
+    { value: "73", text: "Eitat" },
+    { value: "74", text: "Houmal" },
+    { value: "75", text: "Kehaleh" },
+    { value: "76", text: "Keyfoun" },
+    { value: "77", text: "Kfaraamey" },
+    { value: "78", text: "Kfarmatta" },
+    { value: "79", text: "Kommatyeh" },
+    { value: "80", text: "Majdelbaana" },
+    { value: "81", text: "Mansourieh - Ain el Marej" },
+    { value: "82", text: "Mecherfeh" },
+    { value: "83", text: "Mejdlaya" },
+    { value: "84", text: "Rajmeh" },
+    { value: "85", text: "Ramlieh" },
+    { value: "86", text: "Rechmaya" },
+    { value: "87", text: "Remhala" },
+    { value: "88", text: "Rouaysset el Neeman" },
+    { value: "89", text: "Saoufar" },
+    { value: "90", text: "Souk el Ghareb" },
+    { value: "91", text: "Taazanieh" },
+    { value: "92", text: "Achqout" },
+    { value: "93", text: "Adonis" },
+    { value: "94", text: "Ain el Rihaneh" },
+    { value: "95", text: "Aintoura" },
+    { value: "96", text: "Ajaltoun" },
+    { value: "97", text: "Akaybeh" },
+    { value: "98", text: "Aramoun" },
+    { value: "99", text: "Azra & Ozor" },
+    { value: "100", text: "Ballouneh" },
+    { value: "101", text: "Batha" },
+    { value: "102", text: "Bekaatat Achkout" },
+    { value: "103", text: "Bouar" },
+    { value: "104", text: "Bezhel & Mradyeh" },
+    { value: "105", text: "Chahtoul & Jouret Mehad" },
+    { value: "106", text: "Chnaniir" },
+    { value: "107", text: "Daraya" },
+    { value: "108", text: "Daraoun - Harissa" },
+    { value: "109", text: "Dlebta" },
+    { value: "110", text: "Faitroun" },
+    { value: "111", text: "Faraya" },
+    { value: "112", text: "Fatka" },
+    { value: "113", text: "Ghazir" },
+    { value: "114", text: "Ghbaleh" },
+    { value: "115", text: "Ghedrass" },
+    { value: "116", text: "Ghosta" },
+    { value: "117", text: "Ghyneh" },
+    { value: "118", text: "Hiyata" },
+    { value: "119", text: "Hosein" },
+    { value: "120", text: "Hrajel" },
+    { value: "121", text: "Jdeideh - Harharaya - Kattine" },
+    { value: "122", text: "Jeita" },
+    { value: "123", text: "Jounieh" },
+    { value: "124", text: "Jouret Termos" },
+    { value: "125", text: "Kfardebian" },
+    { value: "126", text: "Kfour" },
+    { value: "127", text: "Klayaat" },
+    { value: "128", text: "Maaysra" },
+    { value: "129", text: "Mayrouba" },
+    { value: "130", text: "Raachine" },
+    { value: "131", text: "Rayfoun" },
+    { value: "132", text: "Batha" },
+    { value: "133", text: "Sehay" },
+    { value: "134", text: "Tabarja - Adma - Dafne - Kfaryassine" },
+    { value: "135", text: "Wata el Jawz" },
+    { value: "136", text: "Yahchouch" },
+    { value: "137", text: "Zaaytre" },
+    { value: "138", text: "Zeytoun" },
+    { value: "139", text: "Zouk Mikael" },
+    { value: "140", text: "Zouk Mosbeh" },
+    { value: "141", text: "Ainbal" },
+    { value: "142", text: "Ain Kani" },
+    { value: "143", text: "Ain Wzein" },
+    { value: "144", text: "Ain Zhalta" },
+    { value: "145", text: "Amatour" },
+    { value: "146", text: "Ammik" },
+    { value: "147", text: "Anout" },
+    { value: "148", text: "Atrine" },
+    { value: "149", text: "Baakline" },
+    { value: "150", text: "Baasir" },
+    { value: "151", text: "Barja" },
+    { value: "152", text: "Barouk - Freydiss" },
+    { value: "153", text: "Bater" },
+    { value: "154", text: "Batloun" },
+    { value: "155", text: "Bchetfine" },
+    { value: "156", text: "Beiteddine" },
+    { value: "157", text: "Berjein & Mreyjat" },
+    { value: "158", text: "Bireh" },
+    { value: "159", text: "Botme" },
+    { value: "160", text: "Bsaba El Chouf" },
+    { value: "161", text: "Chehim" },
+    { value: "162", text: "Daher el Mghara" },
+    { value: "163", text: "Dalhoun" },
+    { value: "164", text: "Damour" },
+    { value: "165", text: "Daraya" },
+    { value: "166", text: "Debbieh" },
+    { value: "167", text: "Deir Dourit" },
+    { value: "168", text: "Deir el Qamar" },
+    { value: "169", text: "Deir Kouche" },
+    { value: "170", text: "Dmit" },
+    { value: "171", text: "Fouara" },
+    { value: "172", text: "Gharife" },
+    { value: "173", text: "Haret Jandal" },
+    { value: "174", text: "Hasrout" },
+    { value: "175", text: "Khraybeh" },
+    { value: "176", text: "Jadra" },
+    { value: "177", text: "Jahlieh" },
+    { value: "178", text: "Jbeih" },
+    { value: "179", text: "Jdeidet el Chouf" },
+    { value: "180", text: "Jiyeh" },
+    { value: "181", text: "Joun" },
+    { value: "182", text: "Kahlounie" },
+    { value: "183", text: "Ketermaya" },
+    { value: "184", text: "Kfarfakoud" },
+    { value: "185", text: "Kfarhim" },
+    { value: "186", text: "Kfarkatra" },
+    { value: "187", text: "Kfarnabrakh" },
+    { value: "188", text: "Kfarniss" },
+    { value: "189", text: "Knayse" },
+    { value: "190", text: "Maasser Beiteddine" },
+    { value: "191", text: "Maasser el Chouf" },
+    { value: "192", text: "Majdel Meouch" },
+    { value: "193", text: "Mazboud" },
+    { value: "194", text: "Baatharan" },
+  ];
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [location, setLocation] = useState("CITY");
+  const filteredOptions = options.filter((option) =>
+    option.text.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  function isGoingFun() {
+    if (isGoing === 0) {
+      setStyleIsGoing("rotate");
+      setIsGoing(1);
+    }
+    if (isGoing === 1) {
+      setStyleIsGoing("buttons");
+      setIsGoing(0);
+    }
+  }
+
+  const pick = async () => {
+    try {
+      const result = await axios.get(
+        `http://localhost:8000/api/trips?per_page=${5}&location=${location}&is_going=${isGoing}&campus=3&date=${date}&order_dir=asc&order_by=id`
+      );
+      console.log(result.data);
+      if(result.data.rides.trips.length === 0){
+        setNoDrivers(true);
+        setIsPicked(false);
+      }
+      else{
+        for(let i=0; i<result.data.rides.trips.length; i++){
+          setName(result.data.rides.trips[i].driver_name);
+          setRating(result.data.rides.trips[i].driver_score);
+          setTime(result.data.rides.trips[i].time);
+          setId(result.data.rides.trips[i].id);
+        }
+        setIsPicked(true);
+        setNoDrivers(false);
+      }
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Navigation />
@@ -11,24 +266,35 @@ export default function PickRide() {
         <h1 className="my-5">PICK RIDE</h1>
         <div className="container mt-5 main-container">
           <div className="row inputs mt-5">
-            <div className="col-9 col-lg-5 p-lg-4 py-4 px-3">
-              <button
-                type="button"
-                className="btn btn-outline-primary location-btn"
-                data-bs-toggle="modal"
-                data-bs-target="#map-modal"
-              >
-                SELECT LOCATION
-              </button>
+            <div className="col-12 col-lg-5 p-lg-4 py-4 px-3">
+              <div>
+                <input
+                  class="form-control btn btn-outline-primary location-btn"
+                  list="datalistOptions"
+                  id="exampleDataList"
+                  placeholder="SEARCH FOR CITY"
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setLocation(e.target.value);
+                  }}
+                />
+                <datalist id="datalistOptions">
+                  {filteredOptions.map((option) => (
+                    <option key={option.value} value={option.value.text}>
+                      {option.text}
+                    </option>
+                  ))}
+                </datalist>
+              </div>
             </div>
-            <div className="arrow-container col-3 col-lg-2 d-flex justify-content-center p-lg-4 py-4 px-3 m-lg-0">
-              <a href="">
+            <div className="arrow-container col-3 col-lg-2 d-flex justify-content-center p-lg-4 py-4 px-3 m-lg-0 ">
+              <button onClick={() => isGoingFun()} className="styleIsGoing">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="42.05"
                   height="34.858"
                   viewBox="0 0 42.05 34.858"
-                  className="arrow"
                 >
                   <path
                     id="arrow_1_"
@@ -43,12 +309,14 @@ export default function PickRide() {
                     fill-rule="evenodd"
                   />
                 </svg>
-              </a>
+              </button>
             </div>
-            <div className="col-9 col-lg-5 p-lg-4 py-4 px-3">
+            <div className="col-12 col-lg-5 p-lg-4 py-4 px-3">
               <select
                 className="form-select"
                 aria-label="Default select example"
+                value={campusSite}
+                onChange={(e) => setCampusSite(e.target.value)}
               >
                 <option selected>CAMPUS SITE</option>
                 <option value="1">BEIRUT</option>
@@ -63,15 +331,15 @@ export default function PickRide() {
               </select>
             </div>
             <div className="col-12 col-lg-6 p-lg-4 py-4 px-3">
-              <button
-                type="button"
+              <input
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                type="date"
                 className="btn btn-outline-primary location-btn"
-              >
-                SELECT DATE AND TIME
-              </button>
+              ></input>
             </div>
             <div className="pick-container col-12 col-lg-6 d-flex justify-content-center p-lg-0 p-5">
-              <button className="pick">
+              <button className="pick" onClick={() => pick()}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="138"
@@ -131,32 +399,27 @@ export default function PickRide() {
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col-5 d-flex justify-content-start">
-            <div className="container">
-              <div className="row">
-                <div className="col-6 d-flex justify-content-start">
-                  <p className="text-buttom-left">Available Trips</p>
-                </div>
-                <div className="col-6 d-flex justify-content-end">
-                  <Link to="">
-                    <img src="filter.svg" alt="" />
-                  </Link>
+        {noDrivers && (
+          <div className="container main-container d-flex justify-content-center">
+            <h2>no drivers</h2>
+          </div>
+        )}
+        {isPicked && (
+          <div className="row mt-5">
+            <div className="col-12 mt-5 d-flex justify-content-center">
+              <div className="container main-container">
+                <div className="row">
+                  <div className="col-6 d-flex justify-content-start">
+                    <h6 className="text-buttom-left">Available Trips</h6>
+                  </div>
+                  <div className="col-12">
+                    <Driver name={name} rating={rating} time={time} id={id} />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="col-7 d-flex justify-content-end p-0">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14037.036277206962!2d35.4990196537077!3d33.88193514693669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151f1721587e1d6d%3A0xaa7f5769dc576d98!2sLebanese%20International%20University!5e0!3m2!1sen!2slb!4v1672151492684!5m2!1sen!2slb"
-              width="700"
-              height="450"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-        </div>
+        )}
       </div>
     </>
   );

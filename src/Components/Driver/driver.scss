@@ -1,4 +1,24 @@
+//fonts
+$font: "Segoe UI";
+
+//colors
+$dark-blue: #143d6d;
+$darker-blue: #103158;
+$yellow: #ffb019;
+$white: white;
+$light-gray: rgba(160, 160, 160, 0.2);
+$dark-grey: #a0a0a0;
+$blue-grey: #ecf0f3;
+$light-blue-gray: #e8ecf1;
+
+.request{
+  background-color: transparent !important;
+  border: 0 !important;
+}
+
 .card {
+
+  
   width: 100%;
   border: 0;
   .count {
