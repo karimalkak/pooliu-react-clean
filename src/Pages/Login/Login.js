@@ -91,7 +91,7 @@ export default function Login() {
                           }
                         }}
                         type="password"
-                        className="form-control my-5 input-verify"
+                        className="form-control mt-5 input-verify"
                         id="inputID"
                         placeholder="ID"
                       />
@@ -112,7 +112,7 @@ export default function Login() {
                           }
                         }}
                         type="password"
-                        className="form-control "
+                        className="form-control mt-5"
                         id="password"
                         placeholder="PASSWORD"
                       />
